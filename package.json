@@ -1,0 +1,24 @@
+{
+  "name": "frontcamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gubnich/frontcamp.git"
+  },
+  "author": "Gubnich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gubnich/frontcamp/issues"
+  },
+  "homepage": "https://github.com/gubnich/frontcamp#readme"
+}
