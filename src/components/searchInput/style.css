@@ -1,0 +1,30 @@
+.sourceInputWrapper {
+    position: relative;
+    display: flex;
+    width: 80vw;
+    max-width: 50rem;
+    margin: 9vh 0 5vh;
+    height: 2rem;
+    border: 1px solid grey;
+   
+}
+
+.sourceInput {
+    border: none;
+    outline: none;
+    width: calc(100% - 2rem);
+    padding: 0 1rem;
+}
+
+.expandButton {
+    display: flex;
+    width: 2rem;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid grey;
+    cursor: pointer;
+}
+
+.active {
+    box-shadow: 0 0 5px tomato;
+}
