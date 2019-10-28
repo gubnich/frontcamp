@@ -9,3 +9,12 @@ export const getSourcesList = async () => {
         console.log(error, 'something went wrong');
     }
 }
+
+export const getArticlesList = async (source) => {
+    try {
+        const res = await fetch(`https://newsapi.org/v1/articles?source=${source}&apiKey=${API_KEY}`).then((res) => res.json());
+        return res;
+    } catch (error) {
+        console.log(error, 'something went wrong');
+    }
+}

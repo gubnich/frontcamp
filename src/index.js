@@ -1,4 +1,4 @@
-import { getSourcesList } from './api'
+import { getSourcesList, getArticlesList } from './api'
 import { searchInput } from './components/searchInput'
 import { sourcesList } from './components/sourcesList'
 

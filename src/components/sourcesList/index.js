@@ -1,3 +1,5 @@
+import './style.css';
+
 export const sourcesList = (targetPlace, list, callback) => {
     console.log(list)
     const ul = document.createElement('ul');
@@ -11,10 +13,17 @@ export const sourcesList = (targetPlace, list, callback) => {
     });
     targetPlace.append(ul);
 
-    const filter = (value) => {
+    const filter = (value='') => {
         Array.from(ul.children).forEach(item => {
-            console.log(item.getAttribute('data-name').includes(value))
-            if (item.getAttribute('data-name').includes(value)) item.classList.toggle('hide')
+            console.log(item.getAttribute('data-name'), item.getAttribute('data-name').includes(value))
+            if (item.getAttribute('data-name').includes(value)) {
+                item.classList.add('show');
+                item.classList.remove('hide');
+            }
+            else {
+                item.classList.add('hide');
+                item.classList.remove('show');
+            }
         })
     }
     filter()
