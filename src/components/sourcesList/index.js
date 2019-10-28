@@ -8,7 +8,7 @@ export const sourcesList = (targetPlace, list, callback) => {
         console.log(item)
         li.innerText = JSON.stringify(item);
         li.setAttribute('data-name', item.name.toLowerCase())
-        li.addEventListener('click', () => callback(item))
+        li.addEventListener('click', () => callback(item.id))
         ul.append(li);
     });
     targetPlace.append(ul);

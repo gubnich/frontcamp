@@ -13,7 +13,7 @@ export const getSourcesList = async () => {
 export const getArticlesList = async (source) => {
     try {
         const res = await fetch(`https://newsapi.org/v1/articles?source=${source}&apiKey=${API_KEY}`).then((res) => res.json());
-        return res;
+        return res.articles;
     } catch (error) {
         console.log(error, 'something went wrong');
     }
