@@ -26,13 +26,13 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          "css-loader"
-        ]
-              },
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    "css-loader"
+                ]
+            },
         ]
     },
     plugins: [

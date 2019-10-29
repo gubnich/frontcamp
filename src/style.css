@@ -1,11 +1,19 @@
 html {
     overflow-y: scroll;
-
 }
 #root {
+    position: relative;
     display: flex;
+    min-height: 90vh;
     flex-direction: column;
     justify-content: flex-start;
+    padding-bottom: 4rem;
     align-items: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#root::after {
+    content: 'Powered by newsapi.org';
+    position: absolute;
+    bottom: 0;
+    right: 2rem;
 }

@@ -5,43 +5,42 @@ const placeholderText = 'type source here';
 const maxLength = '50';
 
 export const searchInput = (targetPlace, inputHandler, clickHandler) => {
-    const inputWrapper = document.createElement('div');
-    inputWrapper.classList.add('sourceInputWrapper');
 
+    // structure
+    const inputWrapper = document.createElement('div');
     const input = document.createElement('input')
+    const expandButton = document.createElement('span');
+
+    // css
+    inputWrapper.classList.add('sourceInputWrapper');
     input.classList.add('sourceInput');
     input.placeholder = placeholderText;
     input.maxLength = maxLength;
     input.type = inputType;
-
-    const expandButton = document.createElement('span');
     expandButton.classList.add('expandButton');
+
+    // data
     expandButton.innerText = '...'
 
-    inputWrapper.append(input);
-    inputWrapper.append(expandButton);
-
+    // logic
     input.addEventListener('input', () => {
-        inputHandler(input.value);
-
+        inputHandler(input.value.toLowerCase());
     })
 
     input.addEventListener('focus', () => {
         inputWrapper.classList.add('active');
-        // clickHandler();
     })
 
     input.addEventListener('blur', () => {
         inputWrapper.classList.remove('active');
-        // clickHandler();
-
     })
 
     expandButton.addEventListener('click', () => {
         clickHandler();
     })
 
+    // insert
+    inputWrapper.append(input);
+    inputWrapper.append(expandButton);
     targetPlace.prepend(inputWrapper);
-
-
 }

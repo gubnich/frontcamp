@@ -5,30 +5,3 @@
     padding: 0;
     flex-wrap: wrap;
 }
-.articleItem {
-    display: flex;
-    width: 46%;
-    flex-direction: column;
-    margin: 1%;
-    box-shadow: 5px 5px 9px;
-    padding: 1%;
-}
-.articleItemImageWrapper {
-    padding-bottom: 56%;
-    overflow: hidden;
-    position: relative;
-    background: radial-gradient(ellipse at center, rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.05) 92%,rgba(0,0,0,0) 100%);
-}
-.articleItemImage {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.articleItemTitle {
-    margin: 0.5rem 0;
-    font-weight: 700;
-    font-size: 1.2rem;
-}
-.articleItemDescription {
-}
