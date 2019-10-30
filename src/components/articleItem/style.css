@@ -33,3 +33,10 @@
 .articleItemDate {
     text-align: end;
 }
+
+@media (max-width: 560px) {
+    .articleItem {
+        width: 100%;
+        margin: 2%;
+    }
+}   

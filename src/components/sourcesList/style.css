@@ -10,10 +10,11 @@
 }
 .sourceList::-webkit-scrollbar {
     width: 8px;
+    height: 0;
 }
 .sourceList::-webkit-scrollbar-thumb {
     background: #ff6347;
 }
 .zip {
-    max-height: 2rem;
+    max-height: 5rem;
 }

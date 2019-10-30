@@ -11,9 +11,6 @@ export const sourcesItem = (data, dataHandler) => {
 
     // css
     sourceItem.classList.add('sourceItem');
-    sourceItemCountry.classList.add('sourceItemCountry');
-    sourceItemName.classList.add('sourceItemName');
-    sourceItemDescription.classList.add('sourceItemDescription');
     sourceItemCategory.classList.add('sourceItemCategory');
     sourceItem.setAttribute('data-name', data.name.toLowerCase())
 

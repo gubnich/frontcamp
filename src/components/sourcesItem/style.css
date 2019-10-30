@@ -15,3 +15,12 @@
 .hide {
     display: none;
 }
+
+@media (max-width: 560px) {
+    .sourceItem {
+        grid-template-columns: 5fr 15fr 70fr;
+    }
+    .sourceItemCategory {
+        display: none;
+    }
+}   

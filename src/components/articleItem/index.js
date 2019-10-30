@@ -16,7 +16,6 @@ export const articleItem = (data) => {
     articleItemImageWrapper.classList.add('articleItemImageWrapper');
     articleItemImage.classList.add('articleItemImage');
     articleItemTitle.classList.add('articleItemTitle');
-    articleItemDescription.classList.add('articleItemDescription');
     articleItemDate.classList.add('articleItemDate');
     articleItemAuthor.classList.add('articleItemAuthor');
 
