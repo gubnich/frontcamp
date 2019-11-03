@@ -1,25 +1,43 @@
-import { getSourcesList, getArticlesList } from './api'
-import { searchInput } from './views/searchInput'
-import { sourcesList } from './views/sourcesList'
-import { articlesList } from './views/articlesList'
+import { getSourceList, getArticleList } from './api'
+import { SourceInput } from './views/sourceInput'
+import { SourceList } from './views/sourceList'
+import { ArticleList } from './views/articleList'
 import { SourceTitle } from './views/sourceTitle'
 import './style.css';
-import { ViewElement } from './views/viewElement'
-const dd = new ViewElement([
-    ['articleItem', 'li'],
-    ['artiarticleItemImageWrappercleItem', 'a']])
-console.log('dd', dd)
+
 const root = document.querySelector('#root');
 
-async function dataHandler(sourceId, sourceName) {
-    const dataList = await getArticlesList(sourceId);
-    const sourceTitle = new SourceTitle(root, sourceName);
-    articlesList(root, dataList);
+class MainController {
+    constructor() {
+        this.initialize();
+    }
+
+    async initialize() {
+        this.sourceListData = await getSourceList();
+        this.sourceList = new SourceList(this.sourceListData);
+        this.articleList = new ArticleList();
+        this.sourceTitle = new SourceTitle();
+        this.sourceInput = new SourceInput();
+        this.sourceInput.getInput().addEventListener('input', (({ target }) => {
+            this.sourceList.filterSources(target.value);
+        }))
+        this.sourceInput.getExpandButton().addEventListener('click', (() => {
+            this.sourceList.zipList();
+        }))
+        root.append(this.sourceInput.getRoot());
+        root.append(this.sourceList.getRoot());
+        root.append(this.sourceTitle.getRoot());
+        root.append(this.articleList.getRoot());
+        root.addEventListener('sourceChange', ({ detail }) => {
+            this.updateArticles(detail.sourceId);
+            this.sourceTitle.update(detail.sourceName)
+        })
+    }
+
+    async updateArticles(sourceId) {
+        const articles = await getArticleList(sourceId);
+        this.articleList.update(articles);
+    }
 }
 
-(async function Initialize() {
-    const dataList = await getSourcesList();
-    const { filterHandler, clickHandler } = sourcesList(root, dataList, dataHandler);
-
-    searchInput(root, filterHandler, clickHandler);
-})()
+const mainController = new MainController();

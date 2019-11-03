@@ -1,3 +1,4 @@
+import { ViewElement } from '../viewElement';
 import './style.css';
 
 // export const sourceTitle = (targetPlace, title = '') => {
@@ -8,11 +9,20 @@ import './style.css';
 //     targetPlace.querySelector('.sourceTitle') || targetPlace.append(header);
 // }
 
-export class SourceTitle {
-    constructor(targetPlace, title) {
-        this.header = targetPlace.querySelector('.sourceTitle') || document.createElement('header');
-        this.header.classList.add('sourceTitle')
-        this.header.innerText = title;
-        targetPlace.querySelector('.sourceTitle') || targetPlace.append(this.header);
+const SOURCE_TITLE_META = [
+    ['sourceTitle', 'header'],
+];
+
+export class SourceTitle extends ViewElement {
+    constructor() {
+        super(SOURCE_TITLE_META);
+    }
+
+    update(title) {
+        this.sourceTitle.innerText = title;
+    }
+
+    getRoot() {
+        return this.sourceTitle;
     }
 }

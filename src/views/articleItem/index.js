@@ -12,13 +12,18 @@ const ARTICLE_ITEM_META = [
 ];
 
 export class ArticleItem extends ViewElement {
-    constructor(data) {
+    constructor({ url, urlToImage, title, description, publishedAt, author }) {
         super(ARTICLE_ITEM_META);
-        this.createStructure(data);
-        this.fillWithData(data);
-    }
 
-    fillWithData({ url, urlToImage, title, description, publishedAt, author }) {
+        // structure
+        urlToImage && this.articleItemImageWrapper.append(this.articleItemImage);
+        this.articleItem.append(this.articleItemImageWrapper);
+        this.articleItem.append(this.articleItemTitle);
+        this.articleItem.append(this.articleItemDescription);
+        this.articleItem.append(this.articleItemDate);
+        this.articleItem.append(this.articleItemAuthor);
+
+        // applyData
         this.articleItemImageWrapper.href = url || '#';
         this.articleItemImage.src = urlToImage;
         this.articleItemTitle.innerText = title;
@@ -34,15 +39,6 @@ export class ArticleItem extends ViewElement {
         } else {
             this.articleItemAuthor.innerText = 'Unknown author';
         }
-    }
-
-    createStructure({ urlToImage }) {
-        urlToImage && this.articleItemImageWrapper.append(this.articleItemImage);
-        this.articleItem.append(this.articleItemImageWrapper);
-        this.articleItem.append(this.articleItemTitle);
-        this.articleItem.append(this.articleItemDescription);
-        this.articleItem.append(this.articleItemDate);
-        this.articleItem.append(this.articleItemAuthor);
     }
 
     getRoot() {
