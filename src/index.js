@@ -1,15 +1,19 @@
 import { getSourcesList, getArticlesList } from './api'
-import { searchInput } from './components/searchInput'
-import { sourcesList } from './components/sourcesList'
-import { articlesList } from './components/articlesList'
-import { sourceTitle } from './components/sourceTitle'
+import { searchInput } from './views/searchInput'
+import { sourcesList } from './views/sourcesList'
+import { articlesList } from './views/articlesList'
+import { SourceTitle } from './views/sourceTitle'
 import './style.css';
-
+import { ViewElement } from './views/viewElement'
+const dd = new ViewElement([
+    ['articleItem', 'li'],
+    ['artiarticleItemImageWrappercleItem', 'a']])
+console.log('dd', dd)
 const root = document.querySelector('#root');
 
 async function dataHandler(sourceId, sourceName) {
     const dataList = await getArticlesList(sourceId);
-    sourceTitle(root, sourceName);
+    const sourceTitle = new SourceTitle(root, sourceName);
     articlesList(root, dataList);
 }
 

@@ -1,4 +1,5 @@
 import { articleItem } from '../articleItem'
+import { ArticleItem } from '../articleItem'
 import './style.css';
 
 export const articlesList = (targetPlace, data) => {
@@ -14,7 +15,7 @@ export const articlesList = (targetPlace, data) => {
 
     // insert
     data.forEach(item => {
-        articleList.append(articleItem(item));
+        articleList.append(new ArticleItem(item).getRoot());
     });
     targetPlace.querySelector('.articleList') || targetPlace.append(articleList);
 }
