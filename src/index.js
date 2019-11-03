@@ -14,7 +14,12 @@ class AppController {
     }
 
     async initialize() {
-        this.sourceListData = await getSourceList();
+        try {
+
+            this.sourceListData = await getSourceList();
+        } catch (e) {
+            console.log('////////////////////////')
+        }
         this.sourceList = new SourceList(this.sourceListData);
         this.articleList = new ArticleList();
         this.sourceTitle = new SourceTitle();
