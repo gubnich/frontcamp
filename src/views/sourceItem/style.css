@@ -7,7 +7,7 @@
     cursor: pointer;
 }
 .sourceItem:hover {
-    box-shadow: 0 0 5px;
+    box-shadow: 0 0 .3rem;
 }
 .show {
     display: grid;
@@ -16,7 +16,7 @@
     display: none;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 35rem) {
     .sourceItem {
         grid-template-columns: 5fr 15fr 70fr;
     }

@@ -1,13 +1,14 @@
-import { getSourceList, getArticleList } from './api'
-import { SourceInput } from './views/sourceInput'
-import { SourceList } from './views/sourceList'
-import { ArticleList } from './views/articleList'
-import { SourceTitle } from './views/sourceTitle'
+import { getSourceList, getArticleList } from './api';
+import { MainSection } from './views/mainSection';
+import { SourceInput } from './views/sourceInput';
+import { SourceList } from './views/sourceList';
+import { ArticleList } from './views/articleList';
+import { SourceTitle } from './views/sourceTitle';
 import './style.css';
 
 const root = document.querySelector('#root');
 
-class MainController {
+class AppController {
     constructor() {
         this.initialize();
     }
@@ -18,16 +19,15 @@ class MainController {
         this.articleList = new ArticleList();
         this.sourceTitle = new SourceTitle();
         this.sourceInput = new SourceInput();
+        this.mainSection = new MainSection().getRoot();
         this.sourceInput.getInput().addEventListener('input', (({ target }) => {
             this.sourceList.filterSources(target.value);
         }))
-        this.sourceInput.getExpandButton().addEventListener('click', (() => {
-            this.sourceList.zipList();
-        }))
         root.append(this.sourceInput.getRoot());
         root.append(this.sourceList.getRoot());
-        root.append(this.sourceTitle.getRoot());
-        root.append(this.articleList.getRoot());
+        root.append(this.mainSection);
+        this.mainSection.append(this.sourceTitle.getRoot());
+        this.mainSection.append(this.articleList.getRoot());
         root.addEventListener('sourceChange', ({ detail }) => {
             this.updateArticles(detail.sourceId);
             this.sourceTitle.update(detail.sourceName)
@@ -40,4 +40,4 @@ class MainController {
     }
 }
 
-const mainController = new MainController();
+new AppController();

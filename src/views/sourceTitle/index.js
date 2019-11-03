@@ -10,7 +10,7 @@ import './style.css';
 // }
 
 const SOURCE_TITLE_META = [
-    ['sourceTitle', 'header'],
+    ['sourceTitle', 'h2'],
 ];
 
 export class SourceTitle extends ViewElement {

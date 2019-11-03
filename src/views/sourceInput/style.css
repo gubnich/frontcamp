@@ -1,26 +1,18 @@
 .sourceInputWrapper {
-    position: relative;
-    display: flex;
-    width: 80vw;
-    height: 2rem;
+    width: 80%;
     max-width: 50rem;
-    margin: 9vh 0 5vh;
-    border: 1px solid #808080;
+    margin: 5rem 0 3rem;
 }
+
 .sourceInput {
-    width: calc(100% - 2rem);
     padding: 0 1rem;
-    border: none;
     outline: none;
+    width: 100%;
+    border: .05rem solid #808080;
+    height: 2rem;
+    box-sizing: border-box;
 }
-.expandButton {
-    display: flex;
-    width: 2rem;
-    justify-content: center;
-    align-items: center;
-    border-left: 1px solid #808080;
-    cursor: pointer;
-}
-.active {
-    box-shadow: 0 0 5px #ff6347;
+
+.sourceInput:focus {
+    box-shadow: 0 0 .3rem #ff6347;
 }

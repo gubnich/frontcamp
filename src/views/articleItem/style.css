@@ -1,11 +1,7 @@
-.articleItem {
-    display: flex;
-    flex-direction: column;
-    width: 46%;
-    margin: 1%;
-    padding: 1%;
-    justify-content: space-between;
-    box-shadow: 5px 5px 9px;
+.articleItemWrapper {
+    display: grid;
+    padding: 1rem;
+    box-shadow: .3rem .3rem .5rem;
 }
 .articleItemImageWrapper {
     display: block;
@@ -21,22 +17,15 @@
     object-fit: cover;
 }
 .articleItemTitle {
-    margin: 0.5rem 0;
+    margin: .5rem 0;
     font-weight: 700;
     font-size: 1.2rem;
 }
 .articleItemAuthor, .articleItemDate {
-    padding: 0.5rem;
-    font-size: 0.8rem;
+    padding: .5rem;
+    font-size: .8rem;
     color: #777777;
 }
 .articleItemDate {
     text-align: end;
 }
-
-@media (max-width: 560px) {
-    .articleItem {
-        width: 100%;
-        margin: 2%;
-    }
-}   

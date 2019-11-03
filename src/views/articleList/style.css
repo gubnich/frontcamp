@@ -1,7 +1,14 @@
 .articleList {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
     width: 90%;
-    max-width: 1360px;
+    max-width: 85rem;
     padding: 0;
-    flex-wrap: wrap;
 }
+
+@media (max-width: 35rem) {
+    .articleList {
+        grid-template-columns: 1fr;
+    }
+}   

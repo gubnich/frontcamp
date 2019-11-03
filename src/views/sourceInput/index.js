@@ -2,9 +2,8 @@ import { ViewElement } from '../viewElement';
 import './style.css';
 
 const FILTER_SOURCE_INPUT_META = [
-    ['sourceInputWrapper', 'div'],
+    ['sourceInputWrapper', 'header'],
     ['sourceInput', 'input'],
-    ['expandButton', 'button'],
 ];
 
 export class SourceInput extends ViewElement {
@@ -12,12 +11,10 @@ export class SourceInput extends ViewElement {
         super(FILTER_SOURCE_INPUT_META);
         // structure
         this.sourceInputWrapper.append(this.sourceInput);
-        this.sourceInputWrapper.append(this.expandButton);
         // customization
         this.sourceInput.placeholder = 'type source here';
         this.sourceInput.maxLength = '50';
         this.sourceInput.type = 'text';
-        this.expandButton.innerText = '...'
     }
 
     getRoot() {
@@ -28,7 +25,4 @@ export class SourceInput extends ViewElement {
         return this.sourceInput;
     }
 
-    getExpandButton() {
-        return this.expandButton;
-    }
 }
