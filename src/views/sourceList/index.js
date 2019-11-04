@@ -7,7 +7,7 @@ const SOURCE_LIST_META = [
 ];
 
 export class SourceList extends ViewElement {
-    constructor(data) {
+    constructor(data = []) {
         super(SOURCE_LIST_META);
 
         // structure

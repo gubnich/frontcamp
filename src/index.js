@@ -1,4 +1,5 @@
-import { getSourceList, getArticleList } from './api';
+// import { getSourceList, getArticleList } from './api';
+import { ApiFactory } from './api';
 import { MainSection } from './views/mainSection';
 import { SourceInput } from './views/sourceInput';
 import { SourceList } from './views/sourceList';
@@ -14,12 +15,19 @@ class AppController {
     }
 
     async initialize() {
-        try {
+        this.apiFactory = new ApiFactory();
 
-            this.sourceListData = await getSourceList();
-        } catch (e) {
-            console.log('////////////////////////')
-        }
+        this.logger = new Proxy(ApiFactory, {
+            construct: function (target, thisArg, argumentsList) {
+                console.log('fffff', target)
+                return false
+            }
+        })
+
+        this.sourcesApi = this.apiFactory.createApi('sources');
+        this.articlesApi = this.apiFactory.createApi('articles');
+        // this.sourceListData = await getSourceList();
+        this.sourceListData = await this.sourcesApi.getList();
         this.sourceList = new SourceList(this.sourceListData);
         this.articleList = new ArticleList();
         this.sourceTitle = new SourceTitle();
@@ -40,9 +48,27 @@ class AppController {
     }
 
     async updateArticles(sourceId) {
-        const articles = await getArticleList(sourceId);
+        // const articles = await getArticleList(sourceId);
+        const articles = await this.articlesApi.getList(sourceId);
         this.articleList.update(articles);
     }
 }
 
-new AppController();
+const appController = new AppController();
+
+var proxy = new Proxy(appController.apiFactory, {
+    get: function (target, propKey, receiver) {
+        //I only want to intercept method calls, not property access
+        var propValue = target[propKey];
+        if (typeof propValue != "function") {
+            return propValue;
+        }
+        else {
+            return function () {
+                console.log("intercepting call to " + propKey + " in cat " + target.name);
+                //"this" points to the proxy, is like using the "receiver" that the proxy has captured
+                return propValue.apply(this, arguments);
+            }
+        }
+    }
+})

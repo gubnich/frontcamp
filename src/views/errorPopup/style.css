@@ -1,0 +1,15 @@
+.errorPopupWrapper {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background: rgba(150,150,150, 0.8);
+    cursor: pointer;
+}
+.errorPopup {
+    background: #ffffff;
+    padding: 2rem;
+}
