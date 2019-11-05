@@ -1,4 +1,3 @@
-// import { getSourceList, getArticleList } from './api';
 import { ApiFactory } from './api';
 import { MainSection } from './views/mainSection';
 import { SourceInput } from './views/sourceInput';
@@ -15,32 +14,33 @@ class AppController {
     }
 
     async initialize() {
+
+        // API
         this.apiFactory = new ApiFactory();
-
-        this.logger = new Proxy(ApiFactory, {
-            construct: function (target, thisArg, argumentsList) {
-                console.log('fffff', target)
-                return false
-            }
-        })
-
         this.sourcesApi = this.apiFactory.createApi('sources');
         this.articlesApi = this.apiFactory.createApi('articles');
-        // this.sourceListData = await getSourceList();
+
+        // DATA
         this.sourceListData = await this.sourcesApi.getList();
+
+        // Modules
         this.sourceList = new SourceList(this.sourceListData);
         this.articleList = new ArticleList();
         this.sourceTitle = new SourceTitle();
         this.sourceInput = new SourceInput();
         this.mainSection = new MainSection().getRoot();
-        this.sourceInput.getInput().addEventListener('input', (({ target }) => {
-            this.sourceList.filterSources(target.value);
-        }))
+
+        // Insert
         root.append(this.sourceInput.getRoot());
         root.append(this.sourceList.getRoot());
         root.append(this.mainSection);
         this.mainSection.append(this.sourceTitle.getRoot());
         this.mainSection.append(this.articleList.getRoot());
+
+        // Logic
+        this.sourceInput.getInput().addEventListener('input', (({ target }) => {
+            this.sourceList.filterSources(target.value);
+        }))
         root.addEventListener('sourceChange', ({ detail }) => {
             this.updateArticles(detail.sourceId);
             this.sourceTitle.update(detail.sourceName)
@@ -48,27 +48,9 @@ class AppController {
     }
 
     async updateArticles(sourceId) {
-        // const articles = await getArticleList(sourceId);
         const articles = await this.articlesApi.getList(sourceId);
         this.articleList.update(articles);
     }
 }
 
-const appController = new AppController();
-
-var proxy = new Proxy(appController.apiFactory, {
-    get: function (target, propKey, receiver) {
-        //I only want to intercept method calls, not property access
-        var propValue = target[propKey];
-        if (typeof propValue != "function") {
-            return propValue;
-        }
-        else {
-            return function () {
-                console.log("intercepting call to " + propKey + " in cat " + target.name);
-                //"this" points to the proxy, is like using the "receiver" that the proxy has captured
-                return propValue.apply(this, arguments);
-            }
-        }
-    }
-})
+new AppController();

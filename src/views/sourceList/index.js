@@ -30,10 +30,6 @@ export class SourceList extends ViewElement {
         })
     }
 
-    zipList() {
-        this.sourceList.classList.toggle('zip');
-    }
-
     getRoot() {
         return this.sourceList;
     }
