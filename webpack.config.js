@@ -6,7 +6,8 @@ module.exports = {
     entry: './src/index.js',
     mode: 'production',
     output: {
-        filename: 'main.js',
+        filename: 'main.bundle.js',
+        chunkFilename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
     devServer: {
@@ -43,6 +44,7 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename: "style.css",
+            chunkFilename: "lazyloaded.css"
         }),
     ]
 };

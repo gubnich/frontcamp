@@ -1,4 +1,4 @@
-import { ErrorPopup } from "../views/errorPopup";
+import { ErrorPopup } from "../view/errorPopup";
 
 const ERROR_MESSAGE_TEMPLATE = 'Sorry, we can not get';
 

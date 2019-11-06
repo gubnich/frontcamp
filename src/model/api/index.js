@@ -1,4 +1,4 @@
-import { logger } from '../logger';
+import { logger } from '../../logger';
 
 const API_KEY = 'ba5992c165544bceb02618e82aa9d2ff';
 
@@ -20,7 +20,7 @@ class Api {
             });
             return response[this.apiPoint];
         } catch (error) {
-            import(/* webpackChunkName: "errorHandler" */ '../errorHandler').then(errorHandler => {
+            import(/* webpackChunkName: "errorHandler" */ '../../errorHandler').then(errorHandler => {
                 errorHandler.handleError(this.apiPoint);
             });
         }

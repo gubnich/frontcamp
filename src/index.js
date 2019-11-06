@@ -1,14 +1,14 @@
-import { ApiFactory } from './api';
-import { MainSection } from './views/mainSection';
-import { SourceInput } from './views/sourceInput';
-import { SourceList } from './views/sourceList';
-import { ArticleList } from './views/articleList';
-import { SourceTitle } from './views/sourceTitle';
+import { ApiFactory } from './model/api';
+import { MainSection } from './view/mainSection';
+import { SourceInput } from './view/sourceInput';
+import { SourceList } from './view/sourceList';
+import { ArticleList } from './view/articleList';
+import { SourceTitle } from './view/sourceTitle';
 import './style.css';
 
 const root = document.querySelector('#root');
 
-class AppController {
+class App {
     constructor() {
         this.initialize();
     }
@@ -53,4 +53,4 @@ class AppController {
     }
 }
 
-new AppController();
+new App();
