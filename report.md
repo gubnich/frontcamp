@@ -1,72 +1,72 @@
-Task 3
+### Task 3
 
-1) How many “Chinese” (cuisine) restaurants are in “Queens” (borough)?
+1. How many “Chinese” (cuisine) restaurants are in “Queens” (borough)?
 
-Query:
+##### Query:
 
-db.restaurants.find({"borough": "Queens", "cuisine": "Chinese"}).count()
+`db.restaurants.find({"borough": "Queens", "cuisine": "Chinese"}).count()`
 
-Result:
+##### Result:
 
-728
+`728`
 
-2) What is the _id of the restaurant which has the grade with the highest ever score?
+2. What is the _id of the restaurant which has the grade with the highest ever score?
 
-Query:
+##### Query:
 
-db.restaurants.find({},{_id: 1}).sort({score: -1}).limit(1)
+`db.restaurants.find({},{_id: 1}).sort({score: -1}).limit(1)`
 
-Result:
+##### Result:
 
-{ "_id" : ObjectId("5dc66c50203a9faf1a240079") }
+`{ "_id" : ObjectId("5dc66c50203a9faf1a240079") }`
 
-3) Add a grade { grade: "A", score: 7, date: ISODate() } to every restaurant in “Manhattan”
+3. Add a grade { grade: "A", score: 7, date: ISODate() } to every restaurant in “Manhattan”
 (borough).
 
-Query:
+##### Query:
 
-db.restaurants.updateMany({ borough: 'Manhattan' },{ $push: { grades: { grade: "A", score: 7, date: ISODate() }}})
+`db.restaurants.updateMany({ borough: 'Manhattan' },{ $push: { grades: { grade: "A", score: 7, date: ISODate() }}})`
 
-Result:
+##### Result:
 
-{ "acknowledged" : true, "matchedCount" : 10259, "modifiedCount" : 10259 }
+`{ "acknowledged" : true, "matchedCount" : 10259, "modifiedCount" : 10259 }`
 
-4) What are the names of the restaurants which have a grade at index 8 with score less then 7? Use projection to
+4. What are the names of the restaurants which have a grade at index 8 with score less then 7? Use projection to
 include only names without _id.
 
-Query:
+##### Query:
 
-db.restaurants.find({ 'grades.8.score': { $lt: 7 }}, { _id: 0, name: 1 })
+`db.restaurants.find({ 'grades.8.score': { $lt: 7 }}, { _id: 0, name: 1 })`
 
-Result:
+##### Result:
 
-{ "name" : "Silver Krust West Indian Restaurant" }
-{ "name" : "Pure Food" }
+`{ "name" : "Silver Krust West Indian Restaurant" }
+{ "name" : "Pure Food" }`
 
-5) What are _id and borough of “Seafood” (cuisine) restaurants which received at least one “B” grade in period
+5. What are _id and borough of “Seafood” (cuisine) restaurants which received at least one “B” grade in period
 from 2014-02-01 to 2014-03-01? Use projection to include only _id and borough.
 
-Query:
+##### Query:
 
- db.restaurants.find({cuisine: 'Seafood', grades:{$elemMatch: { date: { $gte: ISODate("2014-02-01"), $lt: ISODate("2014-03-01") }, grade: 'B' }}}, { borough: 1 })
+`db.restaurants.find({cuisine: 'Seafood', grades:{$elemMatch: { date: { $gte: ISODate("2014-02-01"), $lt: ISODate("2014-03-01") }, grade: 'B' }}}, { borough: 1 })`
 
-Result: 
+##### Result:
 
-{ "_id" : ObjectId("5dc67977203a9faf1a2498e5"), "borough" : "Bronx" }
-{ "_id" : ObjectId("5dc67977203a9faf1a249b5c"), "borough" : "Manhattan" }
+`{ "_id" : ObjectId("5dc67977203a9faf1a2498e5"), "borough" : "Bronx" }
+{ "_id" : ObjectId("5dc67977203a9faf1a249b5c"), "borough" : "Manhattan" }`
 
-Task 4
+### Task 4
 
-1) Create an index which will be used by this query and provide proof (from explain() or Compass UI) that the
+1. Create an index which will be used by this query and provide proof (from explain() or Compass UI) that the
 index is indeed used by the winning plan: db.restaurants.find({ name: "Glorious Food" })
 
-Query:
+##### Query:
 
-db.restaurants.createIndex({ name: 1 })
+`db.restaurants.createIndex({ name: 1 })`
 
-Result:
+##### Result:
 
-> db.restaurants.find({ name: "Glorious Food" }).explain()
+`> db.restaurants.find({ name: "Glorious Food" }).explain()
 {
         "queryPlanner" : {
                 "plannerVersion" : 1,
@@ -107,24 +107,24 @@ Result:
                 "gitVersion" : "105acca0d443f9a47c1a5bd608fd7133840a58dd"
         },
         "ok" : 1
-}
+}`
 
-2) Drop index from task 4.1
+2. Drop index from task 4.1
 
-Query: 
+##### Query: 
 
-db.restaurants.dropIndex('name_1')
+`db.restaurants.dropIndex('name_1')`
 
-3) Create an index to make this query covered and provide proof (from explain() or Compass UI) that it is
+3. Create an index to make this query covered and provide proof (from explain() or Compass UI) that it is
 indeed covered: db.restaurants.find({ restaurant_id: "41098650" }, { _id: 0, borough: 1 })
 
-Query:
+##### Query:
 
-db.restaurants.createIndex({ restaurant_id: 1 })
+`db.restaurants.createIndex({ restaurant_id: 1 })`
 
-Result:
+##### Result:
 
-> db.restaurants.find({ restaurant_id: "41098650" }, { _id: 0, borough: 1 }).explain()
+`> db.restaurants.find({ restaurant_id: "41098650" }, { _id: 0, borough: 1 }).explain()
 {
         "queryPlanner" : {
                 "plannerVersion" : 1,
@@ -172,18 +172,18 @@ Result:
                 "gitVersion" : "105acca0d443f9a47c1a5bd608fd7133840a58dd"
         },
         "ok" : 1
-}
+}`
 
-4) Create a partial index on cuisine field which will be used only when filtering on borough equal to “Staten
+4. Create a partial index on cuisine field which will be used only when filtering on borough equal to “Staten
 Island”:
 
-Query:
+##### Query:
 
-db.restaurants.createIndex({ cuisine: 1 }, { partialFilterExpression: { borough: 'Staten Island'} } )
+`db.restaurants.createIndex({ cuisine: 1 }, { partialFilterExpression: { borough: 'Staten Island'} } )`
 
-Result:
+##### Result:
 
-db.restaurants.find({ borough: "Staten Island", cuisine: "American" }).explain()
+`db.restaurants.find({ borough: "Staten Island", cuisine: "American" }).explain()
 {
         "queryPlanner" : {
                 "plannerVersion" : 1,
@@ -241,8 +241,9 @@ db.restaurants.find({ borough: "Staten Island", cuisine: "American" }).explain()
                 "gitVersion" : "105acca0d443f9a47c1a5bd608fd7133840a58dd"
         },
         "ok" : 1
-}
-> db.restaurants.find({ borough: "Staten Island", name: "Bagel Land" }).explain()
+}`
+
+`> db.restaurants.find({ borough: "Staten Island", name: "Bagel Land" }).explain()
 {
         "queryPlanner" : {
                 "plannerVersion" : 1,
@@ -289,8 +290,9 @@ db.restaurants.find({ borough: "Staten Island", cuisine: "American" }).explain()
                 "gitVersion" : "105acca0d443f9a47c1a5bd608fd7133840a58dd"
         },
         "ok" : 1
-}
-> db.restaurants.find({ borough: "Queens", cuisine: "Pizza" }).explain()
+}`
+
+`> db.restaurants.find({ borough: "Queens", cuisine: "Pizza" }).explain()
 {
         "queryPlanner" : {
                 "plannerVersion" : 1,
@@ -337,18 +339,18 @@ db.restaurants.find({ borough: "Staten Island", cuisine: "American" }).explain()
                 "gitVersion" : "105acca0d443f9a47c1a5bd608fd7133840a58dd"
         },
         "ok" : 1
-}
+}`
 
-5) Create an index to make query from task 3.4 covered and provide proof (from explain() or Compass UI) that
+5. Create an index to make query from task 3.4 covered and provide proof (from explain() or Compass UI) that
 it is indeed covered
 
-Query:
+##### Query:
 
-db.restaurants.createIndex({ 'grades.8.score': 1 })
+`db.restaurants.createIndex({ 'grades.8.score': 1 })`
 
-Result:
+##### Result:
 
-db.restaurants.find({ 'grades.8.score': { $lt: 7 }}, { _id: 0, name: 1 }).explain()
+`db.restaurants.find({ 'grades.8.score': { $lt: 7 }}, { _id: 0, name: 1 }).explain()
 {
         "queryPlanner" : {
                 "plannerVersion" : 1,
@@ -396,4 +398,4 @@ db.restaurants.find({ 'grades.8.score': { $lt: 7 }}, { _id: 0, name: 1 }).explai
                 "gitVersion" : "105acca0d443f9a47c1a5bd608fd7133840a58dd"
         },
         "ok" : 1
-}
+}`
