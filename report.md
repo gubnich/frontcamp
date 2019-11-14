@@ -15,11 +15,11 @@
 
 ##### Query:
 
-`db.restaurants.find({},{_id: 1}).sort({score: -1}).limit(1)`
+`db.restaurants.find({},{restaurant_id: 1, _id: 0}).sort({'grades.score': -1}).limit(1)`
 
 ##### Result:
 
-`{ "_id" : ObjectId("5dc66c50203a9faf1a240079") }`
+`{ "restaurant_id" : "40372466" }`
 
 ---
 *3. Add a grade { grade: "A", score: 7, date: ISODate() } to every restaurant in “Manhattan” (borough).*
@@ -49,12 +49,12 @@
 
 ##### Query:
 
-`db.restaurants.find({cuisine: 'Seafood', grades:{$elemMatch: { date: { $gte: ISODate("2014-02-01"), $lt: ISODate("2014-03-01") }, grade: 'B' }}}, { borough: 1 })`
+`db.restaurants.find({cuisine: 'Seafood', grades:{$elemMatch: { date: { $gte: ISODate("2014-02-01"), $lt: ISODate("2014-03-01") }, grade: 'B' }}}, { _id: 0, borough: 1, restaurant_id: 1 })`
 
 ##### Result:
 
-`{ "_id" : ObjectId("5dc67977203a9faf1a2498e5"), "borough" : "Bronx" }
-{ "_id" : ObjectId("5dc67977203a9faf1a249b5c"), "borough" : "Manhattan" }`
+`{ "borough" : "Bronx", "restaurant_id" : "41587617" }
+{ "borough" : "Manhattan", "restaurant_id" : "41611969" }`
 
 ---
 ### Task 4
@@ -123,7 +123,7 @@
 
 ##### Query:
 
-`db.restaurants.createIndex({ restaurant_id: 1 })`
+`db.restaurants.createIndex({ restaurant_id: 1, borough: 1 })`
 
 ##### Result:
 
@@ -138,41 +138,48 @@
                                 "$eq" : "41098650"
                         }
                 },
+                "queryHash" : "11B8AFCC",
+                "planCacheKey" : "A2837C36",
                 "winningPlan" : {
-                        "stage" : "PROJECTION",
+                        "stage" : "PROJECTION_COVERED",
                         "transformBy" : {
                                 "_id" : 0,
                                 "borough" : 1
                         },
                         "inputStage" : {
-                                "stage" : "FETCH",
-                                "inputStage" : {
-                                        "stage" : "IXSCAN",
-                                        "keyPattern" : {
-                                                "restaurant_id" : 1
-                                        },
-                                        "indexName" : "restaurant_id_1",
-                                        "isMultiKey" : false,
-                                        "isUnique" : false,
-                                        "isSparse" : false,
-                                        "isPartial" : false,
-                                        "indexVersion" : 1,
-                                        "direction" : "forward",
-                                        "indexBounds" : {
-                                                "restaurant_id" : [
-                                                        "[\"41098650\", \"41098650\"]"
-                                                ]
-                                        }
+                                "stage" : "IXSCAN",
+                                "keyPattern" : {
+                                        "restaurant_id" : 1,
+                                        "borough" : 1
+                                },
+                                "indexName" : "restaurant_id_1_borough_1",
+                                "isMultiKey" : false,
+                                "multiKeyPaths" : {
+                                        "restaurant_id" : [ ],
+                                        "borough" : [ ]
+                                },
+                                "isUnique" : false,
+                                "isSparse" : false,
+                                "isPartial" : false,
+                                "indexVersion" : 2,
+                                "direction" : "forward",
+                                "indexBounds" : {
+                                        "restaurant_id" : [
+                                                "[\"41098650\", \"41098650\"]"
+                                        ],
+                                        "borough" : [
+                                                "[MinKey, MaxKey]"
+                                        ]
                                 }
                         }
                 },
                 "rejectedPlans" : [ ]
         },
         "serverInfo" : {
-                "host" : "user-��",
+                "host" : "EPBYMINW8923",
                 "port" : 27017,
-                "version" : "3.2.22",
-                "gitVersion" : "105acca0d443f9a47c1a5bd608fd7133840a58dd"
+                "version" : "4.2.1",
+                "gitVersion" : "edf6d45851c0b9ee15548f0f847df141764a317e"
         },
         "ok" : 1
 }`
@@ -182,7 +189,7 @@
 
 ##### Query:
 
-`db.restaurants.createIndex({ cuisine: 1 }, { partialFilterExpression: { borough: 'Staten Island'} } )`
+`db.restaurants.createIndex({ cuisine: 1, borough: 1 }, { partialFilterExpression: { borough: 'Staten Island'} } )`
 
 ##### Result:
 
@@ -206,42 +213,44 @@
                                 }
                         ]
                 },
+                "queryHash" : "DBDC0200",
+                "planCacheKey" : "77ECB1E7",
                 "winningPlan" : {
-                        "stage" : "KEEP_MUTATIONS",
+                        "stage" : "FETCH",
                         "inputStage" : {
-                                "stage" : "FETCH",
-                                "filter" : {
-                                        "borough" : {
-                                                "$eq" : "Staten Island"
-                                        }
+                                "stage" : "IXSCAN",
+                                "keyPattern" : {
+                                        "cuisine" : 1,
+                                        "borough" : 1
                                 },
-                                "inputStage" : {
-                                        "stage" : "IXSCAN",
-                                        "keyPattern" : {
-                                                "cuisine" : 1
-                                        },
-                                        "indexName" : "cuisine_1",
-                                        "isMultiKey" : false,
-                                        "isUnique" : false,
-                                        "isSparse" : false,
-                                        "isPartial" : true,
-                                        "indexVersion" : 1,
-                                        "direction" : "forward",
-                                        "indexBounds" : {
-                                                "cuisine" : [
-                                                        "[\"American\", \"American\"]"
-                                                ]
-                                        }
+                                "indexName" : "cuisine_1_borough_1",
+                                "isMultiKey" : false,
+                                "multiKeyPaths" : {
+                                        "cuisine" : [ ],
+                                        "borough" : [ ]
+                                },
+                                "isUnique" : false,
+                                "isSparse" : false,
+                                "isPartial" : true,
+                                "indexVersion" : 2,
+                                "direction" : "forward",
+                                "indexBounds" : {
+                                        "cuisine" : [
+                                                "[\"American\", \"American\"]"
+                                        ],
+                                        "borough" : [
+                                                "[\"Staten Island\", \"Staten Island\"]"
+                                        ]
                                 }
                         }
                 },
                 "rejectedPlans" : [ ]
         },
         "serverInfo" : {
-                "host" : "user-��",
+                "host" : "EPBYMINW8923",
                 "port" : 27017,
-                "version" : "3.2.22",
-                "gitVersion" : "105acca0d443f9a47c1a5bd608fd7133840a58dd"
+                "version" : "4.2.1",
+                "gitVersion" : "edf6d45851c0b9ee15548f0f847df141764a317e"
         },
         "ok" : 1
 }`
@@ -266,6 +275,8 @@
                                 }
                         ]
                 },
+                "queryHash" : "D9E6DF40",
+                "planCacheKey" : "54301B90",
                 "winningPlan" : {
                         "stage" : "COLLSCAN",
                         "filter" : {
@@ -287,10 +298,10 @@
                 "rejectedPlans" : [ ]
         },
         "serverInfo" : {
-                "host" : "user-��",
+                "host" : "EPBYMINW8923",
                 "port" : 27017,
-                "version" : "3.2.22",
-                "gitVersion" : "105acca0d443f9a47c1a5bd608fd7133840a58dd"
+                "version" : "4.2.1",
+                "gitVersion" : "edf6d45851c0b9ee15548f0f847df141764a317e"
         },
         "ok" : 1
 }`
@@ -315,6 +326,8 @@
                                 }
                         ]
                 },
+                "queryHash" : "DBDC0200",
+                "planCacheKey" : "8F5BB32F",
                 "winningPlan" : {
                         "stage" : "COLLSCAN",
                         "filter" : {
@@ -336,10 +349,10 @@
                 "rejectedPlans" : [ ]
         },
         "serverInfo" : {
-                "host" : "user-��",
+                "host" : "EPBYMINW8923",
                 "port" : 27017,
-                "version" : "3.2.22",
-                "gitVersion" : "105acca0d443f9a47c1a5bd608fd7133840a58dd"
+                "version" : "4.2.1",
+                "gitVersion" : "edf6d45851c0b9ee15548f0f847df141764a317e"
         },
         "ok" : 1
 }`
