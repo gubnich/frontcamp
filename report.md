@@ -15,11 +15,11 @@
 
 ##### Query:
 
-`db.restaurants.find({},{restaurant_id: 1, _id: 0}).sort({score: -1}).limit(1)`
+`db.restaurants.find({},{restaurant_id: 1, _id: 0}).sort({'grades.score': -1}).limit(1)`
 
 ##### Result:
 
-`{ "restaurant_id" : "40356442" }`
+`{ "restaurant_id" : "40372466" }`
 
 ---
 *3. Add a grade { grade: "A", score: 7, date: ISODate() } to every restaurant in “Manhattan” (borough).*
