@@ -84,3 +84,7 @@ db.enron.aggregate([{$unwind: "$headers.To"},{ $group: { _id: {_id:  "$_id", fro
 `
  db.enron.aggregate([{$unwind: "$headers.To"},{ $group: { _id: {_id:  "$_id", from: "$headers.From"}, to: { $addToSet: "$headers.To"}}}, { $unwind: "$to"}, { $group: { _id: {from: "$_id.from", to: "$to"}, count: { $sum: 1}}}, { $sort: { count: -1}}, { $limit: 1 }])
  `
+ ##### Result:
+ `
+{ "_id" : { "from" : "susan.mara@enron.com", "to" : "jeff.dasovich@enron.com" }, "count" : 750 }
+ `
