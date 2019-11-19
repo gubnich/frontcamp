@@ -7,10 +7,10 @@ db.airlines.aggregate([{ $group: { _id: "$class", total: { $sum: 1 }}}, { $proje
 `
 ##### Result:
 `
-{ "total" : 23123, "class" : "L" }
-{ "total" : 5683, "class" : "P" }
-{ "total" : 17499, "class" : "G" }
-{ "total" : 140343, "class" : "F" }
+{ "class" : "P", "total" : 5683 }
+{ "class" : "F", "total" : 140343 }
+{ "class" : "G", "total" : 17499 }
+{ "class" : "L", "total" : 23123 }
 `
 
 ---
@@ -74,13 +74,6 @@ db.airlines.aggregate([{ $match: { originCountry: "United States" }}, { $group: 
 ---
 *Which pair of people have the greatest number of messages in the dataset?*
 ##### Query:
-`
-db.enron.aggregate([{ $unwind: "$headers.To"}, { $group: { _id: {from: "$headers.From", to: "$headers.To"}, count: { $sum: 1}}}])
-`
-
-`
-db.enron.aggregate([{$unwind: "$headers.To"},{ $group: { _id: {_id:  "$_id", from: "$headers.From"}, to: { $addToSet: "$headers.To"}}}, { $unwind: "$to"}, { $group: { _id: {from: "$_id.from", to: "$to"}, count: { $sum: 1}}}, { $match: {"_id.from" : "phillip.love@enron.com", "_id.to" : "sladana-anna.kulic@enron.com"}}])
-`
 `
  db.enron.aggregate([{$unwind: "$headers.To"},{ $group: { _id: {_id:  "$_id", from: "$headers.From"}, to: { $addToSet: "$headers.To"}}}, { $unwind: "$to"}, { $group: { _id: {from: "$_id.from", to: "$to"}, count: { $sum: 1}}}, { $sort: { count: -1}}, { $limit: 1 }])
  `
