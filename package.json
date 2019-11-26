@@ -1,0 +1,22 @@
+{
+  "name": "frontcamp",
+  "version": "1.0.0",
+  "description": "frontcamp homework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gubnich/frontcamp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gubnich/frontcamp/issues"
+  },
+  "homepage": "https://github.com/gubnich/frontcamp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
