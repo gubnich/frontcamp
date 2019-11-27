@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var news = require('./news.json')
 
+app.set('view engine', 'pug');
+
 app.use(express.json());
 
 // app.all('*', function (req, res, next) {
@@ -50,7 +52,8 @@ app.delete('/news/:id', function (req, res) {
 app.use(function(error, req, res, next) {
   // Any request to this server will get here, and will send an HTTP
   // response with the error message 'woops'
-  res.json({ message: error.message + 'hello'});
+  // res.json({ message: error.message + 'hello'});
+  res.render('error', { message: error.message});
 });
 
 app.listen(3000, function () {
