@@ -1,6 +1,6 @@
 const express = require('express');
-// const winston = require('winston');
-const news = require('./news.json')
+const winston = require('winston');
+const news = require('./news.json');
 
 const app = express();
 
@@ -8,24 +8,23 @@ app.set('view engine', 'pug');
 
 app.use(express.json());
 
-app.all('*', function (req, res, next) {
-  throw new Error('woops');
-  res.jso(news);
+// app.all('*', function (req, res, next) {
+//   res.json(news);
+// });
+
+const logger = winston.createLogger({
+  transports: [
+    new winston.transports.File({ filename: 'requests.log' })
+  ]
 });
 
-// const logger = winston.createLogger({
-//   transports: [
-//     new winston.transports.File({ filename: 'requests.log' })
-//   ]
-// });
-
-// app.all('*', function ({ url }, res, next) {
-//   logger.log({
-//     level: 'info',
-//     [(new Date).toLocaleString()]: url
-//   });
-//   next();
-// });
+app.all('*', function ({ url }, res, next) {
+  logger.log({
+    level: 'info',
+    [(new Date).toLocaleString()]: url
+  });
+  next();
+});
 
 app.get('/news', function (req, res) {
   res.json(news.articles);
@@ -44,20 +43,19 @@ app.post('/news', function (req, res) {
 
 app.put('/news/:id', function (req, res) {
   const { id } = req.params;
-  news.articles.splice(id, 1, req.body)
+  news.articles.splice(id, 1, req.body);
   res.json(news.articles);
 });
 
 app.delete('/news/:id', function (req, res) {
   const { id } = req.params;
-  news.articles.splice(id, 1)
+  news.articles.splice(id, 1);
   res.json(news.articles);
 });
 
-app.use(function (error, req, res) {
+app.use(function (error, req, res, next) {
   res.render('error', { message: error.message });
 });
-
 
 app.listen(3000, function () {
   console.log('Frontcamp app listening on port 3000!');
