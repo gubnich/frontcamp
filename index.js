@@ -1,56 +1,21 @@
 const express = require('express');
-const winston = require('winston');
-const news = require('./news.json');
+const newsRouter = require('./routers/newsRouter');
+const sourceRouter = require('./routers/sourceRouter');
 
 const app = express();
+const news = require('./data/news.json');
+const log = require('./logger/logger');
 
 app.set('view engine', 'pug');
 
 app.use(express.json());
+app.use(log);
 
-// app.all('*', function (req, res, next) {
-//   res.json(news);
-// });
+app.use('/news', newsRouter);
+app.use('/source', sourceRouter);
 
-const logger = winston.createLogger({
-  transports: [
-    new winston.transports.File({ filename: 'requests.log' })
-  ]
-});
-
-app.all('*', function ({ url }, res, next) {
-  logger.log({
-    level: 'info',
-    [(new Date).toLocaleString()]: url
-  });
-  next();
-});
-
-app.get('/news', function (req, res) {
-  res.json(news.articles);
-});
-
-app.get('/news/:id', function (req, res) {
-  const { id } = req.params;
-  const data = news.articles[id];
-  res.json(data);
-});
-
-app.post('/news', function (req, res) {
-  news.articles.push(req.body);
-  res.json(news.articles);
-});
-
-app.put('/news/:id', function (req, res) {
-  const { id } = req.params;
-  news.articles.splice(id, 1, req.body);
-  res.json(news.articles);
-});
-
-app.delete('/news/:id', function (req, res) {
-  const { id } = req.params;
-  news.articles.splice(id, 1);
-  res.json(news.articles);
+app.all('*', function (req, res, next) {
+  res.json(news);
 });
 
 app.use(function (error, req, res, next) {
