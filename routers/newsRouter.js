@@ -1,32 +1,38 @@
+const mongoose = require("mongoose");
 const newsRouter = require('express').Router();
-const news = require('../data/news.json');
+const articleSchema = require('../articleSchema');
+
+mongoose.connect("mongodb+srv://developer:develop@cluster0-zukgb.mongodb.net/news?retryWrites=true&w=majority", { useNewUrlParser: true });
+const DBarticles = mongoose.model("articles", articleSchema);
 
 newsRouter.get('/', function (req, res) {
-  throw new Error('Oops');
-  res.json(news.articles);
+  // throw new Error('Oops');
+  DBarticles.find({})
+    .then( data => res.json(data));
 });
 
 newsRouter.post('/', function (req, res) {
-  news.articles.push(req.body);
-  res.json(news.articles);
+  const newArticle = new DBarticles(req.body);
+  newArticle.save()
+    .then( ({ _id }) => res.send(_id));
 });
 
 newsRouter.get('/:id', function (req, res) {
   const { id } = req.params;
-  const data = news.articles[id];
-  res.json(data);
+  DBarticles.findOne({ _id: id })
+    .then( data => res.json(data));
 });
 
 newsRouter.put('/:id', function (req, res) {
   const { id } = req.params;
-  news.articles.splice(id, 1, req.body);
-  res.json(news.articles);
+  DBarticles.findOneAndUpdate({ _id: id }, req.body)
+    .then( data => res.json(data));
 });
 
 newsRouter.delete('/:id', function (req, res) {
   const { id } = req.params;
-  news.articles.splice(id, 1);
-  res.json(news.articles);
+  DBarticles.findOneAndDelete({ _id: id })
+    .then( data => res.json(data));
 });
 
 module.exports = newsRouter;
