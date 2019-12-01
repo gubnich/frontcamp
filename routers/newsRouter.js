@@ -1,36 +1,35 @@
 const mongoose = require("mongoose");
 const newsRouter = require('express').Router();
-const articleSchema = require('../articleSchema');
 
-const DBarticles = mongoose.model("articles", articleSchema);
+const DB_articles = require('../database/articles');
 
 newsRouter.get('/', function (req, res) {
   // throw new Error('Oops');
-  DBarticles.find({})
+  DB_articles.find({})
     .then( data => res.json(data));
 });
 
 newsRouter.post('/', function (req, res) {
-  const newArticle = new DBarticles(req.body);
+  const newArticle = new DB_articles(req.body);
   newArticle.save()
     .then( ({ _id }) => res.send(_id));
 });
 
 newsRouter.get('/:id', function (req, res) {
   const { id } = req.params;
-  DBarticles.findOne({ _id: id })
+  DB_articles.findOne({ _id: id })
     .then( data => res.json(data));
 });
 
 newsRouter.put('/:id', function (req, res) {
   const { id } = req.params;
-  DBarticles.findOneAndUpdate({ _id: id }, req.body)
+  DB_articles.findOneAndUpdate({ _id: id }, req.body)
     .then( data => res.json(data));
 });
 
 newsRouter.delete('/:id', function (req, res) {
   const { id } = req.params;
-  DBarticles.findOneAndDelete({ _id: id })
+  DB_articles.findOneAndDelete({ _id: id })
     .then( data => res.json(data));
 });
 

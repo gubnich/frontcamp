@@ -9,4 +9,6 @@ const articleSchema = mongoose.Schema({
   publishedAt: mongoose.Schema.Types.String,
 });
 
-module.exports = articleSchema;
+const DB_articles = mongoose.model('articles', articleSchema);
+
+module.exports = DB_articles;
