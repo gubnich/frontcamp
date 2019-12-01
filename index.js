@@ -17,7 +17,7 @@ app.use(log);
 
 localAuth.initializeAuth(app);
 
-app.use('/news', require('connect-ensure-login').ensureLoggedIn(), newsRouter);
+app.use('/news', newsRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 

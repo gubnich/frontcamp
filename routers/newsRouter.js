@@ -1,6 +1,5 @@
-const mongoose = require("mongoose");
 const newsRouter = require('express').Router();
-
+const requireAuth = require('../auth').requireAuth;
 const DB_articles = require('../database/articles');
 
 newsRouter.get('/', function (req, res) {
@@ -21,13 +20,14 @@ newsRouter.get('/:id', function (req, res) {
     .then( data => res.json(data));
 });
 
-newsRouter.put('/:id', function (req, res) {
+newsRouter.put('/:id', requireAuth(), function (req, res) {
   const { id } = req.params;
+  console.log(id, req.body)
   DB_articles.findOneAndUpdate({ _id: id }, req.body)
     .then( data => res.json(data));
 });
 
-newsRouter.delete('/:id', function (req, res) {
+newsRouter.delete('/:id', requireAuth(),  function (req, res) {
   const { id } = req.params;
   DB_articles.findOneAndDelete({ _id: id })
     .then( data => res.json(data));

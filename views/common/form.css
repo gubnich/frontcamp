@@ -1,0 +1,13 @@
+.form {
+  margin: 50px;
+  width: 270px;
+}
+
+.formField {
+  display: flex;
+  width: 100%;
+  margin: 10px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+  
