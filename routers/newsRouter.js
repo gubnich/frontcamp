@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const newsRouter = require('express').Router();
 const articleSchema = require('../articleSchema');
 
-mongoose.connect("mongodb+srv://developer:develop@cluster0-zukgb.mongodb.net/news?retryWrites=true&w=majority", { useNewUrlParser: true });
 const DBarticles = mongoose.model("articles", articleSchema);
 
 newsRouter.get('/', function (req, res) {
