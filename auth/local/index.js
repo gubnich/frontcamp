@@ -1,6 +1,6 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
-const DB_users = require('../database/users');
+const DB_users = require('../../database/users');
 const requireAuth = require('connect-ensure-login').ensureLoggedIn;
 
 passport.use(new LocalStrategy(
@@ -15,14 +15,19 @@ passport.use(new LocalStrategy(
 ));
 
 passport.serializeUser(function (user, cb) {
-  cb(null, user._id);
+  cb(null, user);
 });
 
-passport.deserializeUser(function (_id, cb) {
-  DB_users.findOne({ _id: _id }, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
+// passport.deserializeUser(function (_id, cb) {
+//   DB_users.findOne({ _id: _id }, function (err, user) {
+//     if (err) { return cb(err); }
+//     cb(null, user);
+//   });
+// });
+
+passport.deserializeUser(function (obj, cb) {
+  
+    cb(null, obj);
 });
 
 const initializeAuth = (app) => {

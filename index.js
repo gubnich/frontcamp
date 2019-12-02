@@ -5,7 +5,8 @@ const newsRouter = require('./routers/newsRouter');
 const signupRouter = require('./routers/signupRouter');
 const loginRouter = require('./routers/loginRouter');
 const log = require('./logger/logger');
-const localAuth = require('./auth/index')
+const facebookAuth = require('./auth/facebook')
+const localAuth = require('./auth/local')
 require('./database')
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(log);
 
 localAuth.initializeAuth(app);
+facebookAuth.initializeAuth(app);
 
 app.use('/news', newsRouter);
 app.use('/signup', signupRouter);
@@ -27,6 +29,11 @@ app.get('/',function (req, res, next) {
 
 app.use(function (error, req, res, next) {
   res.render('error', { message: error.message });
+});
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
 });
 
 app.listen(3000, function () {
