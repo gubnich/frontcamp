@@ -1,11 +1,6 @@
 const newsRouter = require('express').Router();
-const requireAuth = require('../auth/local').requireAuth;
 const DB_articles = require('../database/articles');
-
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
-}
+const ensureAuthenticated = require('../auth').ensureAuthenticated
 
 newsRouter.get('/', ensureAuthenticated, function (req, res) {
   // throw new Error('Oops');
@@ -27,7 +22,6 @@ newsRouter.get('/:id', function (req, res) {
 
 newsRouter.put('/:id', ensureAuthenticated, function (req, res) {
   const { id } = req.params;
-  console.log(id, req.body)
   DB_articles.findOneAndUpdate({ _id: id }, req.body)
     .then( data => res.json(data));
 });
