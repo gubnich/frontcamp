@@ -4,7 +4,9 @@
   "description": "frontcamp homework",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --mode development --watch",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,8 @@
     "@babel/preset-env": "^7.7.5",
     "@babel/preset-react": "^7.7.4",
     "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.1",
+    "style-loader": "^1.0.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },
