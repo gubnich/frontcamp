@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -19,15 +19,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      },
-      {
-        test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: MiniCssExtractPlugin.loader,
           },
-        ],
+          "css-loader"
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|jpg)$/i,
+        use: 'file-loader',
       },
     ]
   },
@@ -35,12 +36,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html"
     }),
-    new CopyPlugin([
-      {
-        from: 'src/static/images/*',
-        to: 'imgages',
-        flatten: true 
-      },
-    ]),
-  ]
+    new MiniCssExtractPlugin({
+      filename: "style.css",
+    }),
+  ],
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  }
 };

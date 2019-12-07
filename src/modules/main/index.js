@@ -1,8 +1,16 @@
-import React from 'react';
-import Header from '../../components/logo'
+import React, { useEffect } from 'react';
+import Header from '../../components/header';
 
 export default () => {
-    return (
-        <Header />
-    )
+  useEffect(() => {
+    async function getMovies() {
+      const data = await fetch(' https://reactjs-cdp.herokuapp.com/movies');
+      console.log(data);
+  }
+  getMovies();
+  }
+   , []);
+  return (
+    <Header />
+  )
 }

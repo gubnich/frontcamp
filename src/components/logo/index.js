@@ -3,9 +3,9 @@ import './style.css';
 
 export default () => {
     return (
-        <h1 className='logo'>
+        <div className='logo'>
             <span>netflix</span>
             <span>roulette</span>
-        </h1>
+        </div>
     )
 }
