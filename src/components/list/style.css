@@ -1,0 +1,12 @@
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 50px;
+  list-style: none;
+  padding: 60px;
+  margin: 0;
+}
+
+.listItem {
+  width: 100%;
+}

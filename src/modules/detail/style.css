@@ -1,0 +1,19 @@
+.magnifier {
+  background: url('../../assets/images/magnifier.svg');
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
+
+.infoSection {
+  height: 70px;
+  padding: 15px 120px;
+  box-sizing: border-box;
+  line-height: 40px;
+  color: #ffffff;
+  background: #555555;
+  font-size: 18px;
+  font-weight: 600;
+}

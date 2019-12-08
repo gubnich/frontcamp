@@ -1,0 +1,45 @@
+.movieDetail {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-gap: 80px;
+  padding: 0;
+  margin: 0;
+  color: #cccccc;
+}
+
+.movieDetail .poster {
+  width: 100%;
+}
+
+.movieDetail .title {
+  margin-right: 20px;
+  font-size: 40px;
+}
+
+.movieDetail .raiting {
+  font-size: 30px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+    color: #a1e66f;
+    padding: 10px;
+    font-weight: 100;
+}
+
+.movieDetail .time {
+  margin: 30px 0;
+}
+
+.movieDetail .date, .movieDetail .duration {
+  font-size: 30px;
+  color: #f65261;
+}
+
+.movieDetail .duration {
+  margin-left: 40px;
+}
+
+.movieDetail .description {
+  width: 90%;
+}

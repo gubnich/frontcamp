@@ -1,5 +1,5 @@
 .header {
-  height: 400px;
+  min-height: 400px;
   position: relative;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .headerContentInner {
-  padding: 10px 70px;
+  padding: 30px 70px;
 }
 
 .slogan {

@@ -1,0 +1,32 @@
+.card {
+  margin: 0;
+}
+
+.posterWrapper {
+  position: relative;
+  padding-bottom: 140%;
+  overflow: hidden;
+}
+
+.card .poster {
+  position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card .caption {
+  padding: 20px 0;
+  color: #cccccc;
+}
+
+.cardDate {
+  float: right;
+  padding: 3px 10px;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+}
+
+.cardGenres {
+  margin-top: 10px;
+}

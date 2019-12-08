@@ -1,0 +1,30 @@
+.main {
+  background: #232323;
+}
+
+.resultsSection {
+  height: 70px;
+    padding: 15px 120px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    line-height: 40px;
+    color: #ffffff;
+    background: #555555;
+}
+
+.result {
+  font-weight: 500;
+}
+
+.listSection {
+  min-height: 400px;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message {
+    font-size: 40px;
+    color: #ffffff;
+}

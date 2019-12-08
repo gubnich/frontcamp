@@ -6,7 +6,8 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.join(__dirname, "/dist"),
-    filename: "index_bundle.js"
+    filename: "index_bundle.js",
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -27,10 +28,13 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|jpg)$/i,
+        test: /\.(png|jpe?g|gif|jpg|svg)$/i,
         use: 'file-loader',
       },
     ]
+  },
+  devServer: {
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
