@@ -1,0 +1,9 @@
+.errorMessage{
+  background: aliceblue;
+  margin: 0 auto;
+  width: 50%;
+  text-align: center;
+  height: 300px;
+  line-height: 300px;
+  margin-top: 200px;
+}

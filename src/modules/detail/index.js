@@ -5,6 +5,7 @@ import Search from '../../components/search';
 import SearchFilter from '../../components/searchFilter';
 import Footer from '../../components/footer';
 import MovieDetail from '../../components/movieDetail';
+import ErrorBoundary from '../../components/error';
 import './style.css';
 
 export default class Detail extends React.Component {
@@ -13,7 +14,7 @@ export default class Detail extends React.Component {
     this.state = { movie: {}, movies: [], genre: '' };
   }
 
-  async getMovies({filter}) {
+  async getMovies({ filter }) {
     return fetch('https://reactjs-cdp.herokuapp.com/movies?filter=' + filter)
       .then(response => response.json())
       .then(response => response.data)
@@ -21,26 +22,26 @@ export default class Detail extends React.Component {
 
   async getMovie(id) {
     return fetch('https://reactjs-cdp.herokuapp.com/movies/' + id)
-    .then(response => response.json())
+      .then(response => response.json())
   }
-  
+
   async componentDidMount() {
     const movieId = window.location.pathname.split('/').pop();
     console.log(movieId)
     const movie = await this.getMovie(movieId);
     const genre = movie.genres[0];
     let movies;
-    if(genre) {
-      movies = await this.getMovies({filter: genre});
+    if (genre) {
+      movies = await this.getMovies({ filter: genre });
     }
     this.setState({ movie, genre, movies });
   }
   render() {
     return (
-      <>
+      <ErrorBoundary>
         <Header>
           <a href='/' className='magnifier'></a>
-          <MovieDetail {...this.state.movie}/>
+          <MovieDetail {...this.state.movie} />
         </Header>
         <main className='main'>
           <section className='infoSection'>
@@ -54,8 +55,7 @@ export default class Detail extends React.Component {
           </section>
           <Footer />
         </main>
-      </>
-
+      </ErrorBoundary>
     )
   }
 }
