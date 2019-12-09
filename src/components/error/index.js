@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import { ERROR_MESSAGE } from '../constants';
 
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ export default class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <p className='errorMessage'>Unfortunantly, something went wrong</p>
+        <p className='errorMessage'>{ERROR_MESSAGE}</p>
       )
     }
     return this.props.children;
