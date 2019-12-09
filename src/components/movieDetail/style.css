@@ -18,13 +18,13 @@
 
 .movieDetail .raiting {
   font-size: 30px;
-    border: 1px solid #ffffff;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 60px;
-    color: #a1e66f;
-    padding: 10px;
-    font-weight: 100;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 60px;
+  color: #a1e66f;
+  padding: 10px;
+  font-weight: 100;
 }
 
 .movieDetail .time {

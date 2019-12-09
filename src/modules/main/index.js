@@ -16,7 +16,6 @@ export default class Main extends React.Component {
   
   async searchMovies(e) {
     e.preventDefault();
-    console.log(e.target[4])
     const query = e.target[0].value;
     const searchBy = 
       e.target[2].checked ?
@@ -31,11 +30,8 @@ export default class Main extends React.Component {
   }
 
   async getMovies(query = '', searchBy = '', sortBy = '') {
-    console.log('///////', query, searchBy, sortBy)
     return fetch(`https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortBy}&sortOrder=desc&search=${query}&searchBy=${searchBy}&filter=`)
-    // return fetch(`https://reactjs-cdp.herokuapp.com/movies`)
     .then(response => response.json())
-    // .then(response => {response.data)
   }
   
   async componentDidMount() {

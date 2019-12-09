@@ -3,11 +3,6 @@ import SearchFilter from '../searchFilter';
 import './style.css';
 
 export default ({id, onSubmit}) => {
-  console.log(onSubmit)
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(e);
-  // }
   return (
     <form id={id} onSubmit={onSubmit}>
       <div className='searchBar'>

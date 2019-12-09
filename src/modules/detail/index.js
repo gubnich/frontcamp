@@ -1,8 +1,6 @@
 import React from 'react';
 import Header from '../../components/header';
 import List from '../../components/list';
-import Search from '../../components/search';
-import SearchFilter from '../../components/searchFilter';
 import Footer from '../../components/footer';
 import MovieDetail from '../../components/movieDetail';
 import ErrorBoundary from '../../components/error';
@@ -27,7 +25,6 @@ export default class Detail extends React.Component {
 
   async componentDidMount() {
     const movieId = window.location.pathname.split('/').pop();
-    console.log(movieId)
     const movie = await this.getMovie(movieId);
     const genre = movie.genres[0];
     let movies;

@@ -2,7 +2,6 @@ import React from 'react';
 import './style.css';
 
 export default ({ form, name, value1 = '', value2 = '' }) => {
-
   return (
     <span>
       <label>
