@@ -6,6 +6,10 @@ html, body {
   background: #555555;
 }
 
+body {
+  overflow-y: scroll;
+
+}
 .mainContainer {
   width: 1200px;
   margin: 0 auto;
@@ -13,4 +17,8 @@ html, body {
 
 a {
   text-decoration: none;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }

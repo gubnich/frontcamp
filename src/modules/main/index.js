@@ -14,6 +14,9 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     // this.state = { movies: [], total: 0 };
+    this.state = {
+      sortBy: 'release_date'
+    }
   }
   
   // async searchMovies(e) {
@@ -36,10 +39,19 @@ class Main extends React.Component {
   //   .then(response => response.json())
   // }
   
-  async componentDidMount() {
+  componentDidMount() {
     this.props.dispatch(loadMovies({}))
   }
   
+  handleSubmit() {
+    this.props.dispatch(loadMovies({}))
+  }
+
+  handleClick = () => {
+    this.setState({sortBy: this.state.sortBy === 'release_date' ? 'rating' : 'release_date'});
+    console.log(this.state.sortBy)
+  }
+
   render () {
     console.log('/////////////',this.props)
     const { movies, total } = this.props
@@ -47,12 +59,12 @@ class Main extends React.Component {
       <ErrorBoundary>
         <Header>
           <h1 className='slogan'>Find your movie</h1>
-          {/* <Search id='searchForm' onSubmit={this.searchMovies.bind(this)} /> */}
+          <Search onSubmit={this.handleSubmit} />
         </Header>
         <main className='main'>
           <section className='resultsSection'>
             <div className='result'>{total} movie found</div>
-            <SearchFilter form='searchForm' name='sortBy' value1='release date' value2='rating' />
+            <SearchFilter onClick={this.handleClick} value1='release_date' value2='rating' selected={this.state.sortBy} />
           </section>
           <section className='listSection'>
             {movies.length

@@ -1,18 +1,17 @@
 import React from 'react';
-import SearchFilter from '../searchFilter';
+import SearchFilter from '../searchFilter2';
 import Button from '../button';
 import './style.css';
 
-export default ({id, onSubmit}) => {
+export default ({onSubmit}) => {
   return (
-    <form id={id} onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
       <div className='searchBar'>
         <input className='searchInput' type='text' />
-        {/* <button className='searchButton' type='submit'>SEARCH</button> */}
         <Button type='submit' value='search' className='searchButton' />
       </div>
       <div className='searchOptions'>
-        <span className='searchCaption'>SEARCH BY</span>
+        <span className='searchCaption uppercase'>search by</span>
         <SearchFilter name='searchBy' value1='title' value2='genres' />
       </div>
     </form>

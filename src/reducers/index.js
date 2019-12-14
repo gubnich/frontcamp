@@ -8,6 +8,7 @@ import example from './example'
 const initialState = {
   movies: [],
   total: 0,
+  error: false,
 };
 function rootReducer(state = initialState, action) {
   switch (action.type) {
@@ -19,9 +20,10 @@ function rootReducer(state = initialState, action) {
         movies: action.payload.movies,
       }
     case 'LOAD_MOVIES_ERROR':
-      return state.map(todo =>
-        todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
-      )
+      return {
+        ...state,
+        error: true,
+      }
     default:
       return state
   }
