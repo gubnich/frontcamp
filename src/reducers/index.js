@@ -6,19 +6,19 @@ import example from './example'
 // })
 
 const initialState = {
-  movies: []
+  movies: [],
+  total: 0,
 };
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case 'LOAD_MOVIES':
-      return [
+    case 'LOAD_MOVIES_SUCCESS':
+      console.log('action', action.payload.total, state)
+      return {
         ...state,
-        {
-          movies: action.movies,
-          total: action.total,
-        }
-      ]
-    case 'TOGGLE_TODO':
+        total: action.payload.total,
+        movies: action.payload.movies,
+      }
+    case 'LOAD_MOVIES_ERROR':
       return state.map(todo =>
         todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
       )

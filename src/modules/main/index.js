@@ -41,8 +41,8 @@ class Main extends React.Component {
   }
   
   render () {
-    console.log(this.props)
-    const { movies } = this.props
+    console.log('/////////////',this.props)
+    const { movies, total } = this.props
     return (
       <ErrorBoundary>
         <Header>
@@ -51,7 +51,7 @@ class Main extends React.Component {
         </Header>
         <main className='main'>
           <section className='resultsSection'>
-            {/* <div className='result'>{this.state.total} movie found</div> */}
+            <div className='result'>{total} movie found</div>
             <SearchFilter form='searchForm' name='sortBy' value1='release date' value2='rating' />
           </section>
           <section className='listSection'>
@@ -68,7 +68,8 @@ class Main extends React.Component {
   }
 
 const mapStateToProps = state => ({
-  movies: state.movies
+  movies: state.movies,
+  total: state.total
 })
 
 export default connect(mapStateToProps)(Main)
