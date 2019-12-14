@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/header';
 import List from '../../components/list';
 import Search from '../../components/search';
-import SearchFilter from '../../components/searchFilter';
+import SearchFilter from '../../components/searchFilter2';
 import Footer from '../../components/footer';
 import ErrorBoundary from '../../components/error';
 

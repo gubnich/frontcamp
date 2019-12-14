@@ -1,0 +1,29 @@
+.button {
+  height: 100%;
+  border: none;
+  color: #ffffff;
+  background: #424242;
+  border-radius: 5px;
+  padding: 0 20px;
+  letter-spacing: 1px;
+  line-height: 40px;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.active {
+  background: #f65261;
+
+}
+
+.left {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.right{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  
+}

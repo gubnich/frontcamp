@@ -15,15 +15,11 @@
 }
 
 .searchButton {
-  height: 100%;
-  border: none;
   font-size: 20px;
-  color: #ffffff;
-  background: #f65261;
-  border-radius: 5px;
   width: 25%;
   float: right;
   line-height: 60px;
+  background: #f65261;
   cursor: pointer;
 }
 
