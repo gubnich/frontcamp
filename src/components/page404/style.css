@@ -2,5 +2,27 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to bottom, #bbd2c5, #536976);;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(60deg, #232323 0%, #555555 100%);
+}
+
+.page404 span:nth-child(1) {
+  font-size: 50px;
+}
+
+.page404 .homepageLink {
+  margin-top: 25px;
+  padding: 5px 10px;
+  color: #999999;
+  border: 1px solid #999999;
+  border-radius: 7px;
+}
+
+.page404 .homepageLink:hover {
+  box-shadow: inset 0 0 2px #ffffff;
 }
