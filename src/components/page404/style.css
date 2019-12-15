@@ -1,0 +1,6 @@
+.page404 {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, #bbd2c5, #536976);;
+}

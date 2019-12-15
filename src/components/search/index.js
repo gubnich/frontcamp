@@ -14,7 +14,7 @@ export default (props) => {
     const query = e.target[0].value;
     console.log(e.target[0].value)
     onSubmit(query)
-    
+
   }
 
   return (

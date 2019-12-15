@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { loadMovies } from '../../actions'
+import { SLOGAN } from '../../constants';
 import Logo from '../../components/logo';
 import Promo from '../../components/promo';
 import List from '../../components/list';
@@ -6,8 +10,6 @@ import Search from '../../components/search';
 import SearchFilter from '../../components/searchFilter';
 import Footer from '../../components/footer';
 import ErrorBoundary from '../../components/error';
-import { connect } from 'react-redux';
-import { loadMovies } from '../../actions'
 
 import './style.css';
 
@@ -17,7 +19,8 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    const { query, searchBy, sortBy } = this.props;
+    const query = window.location.pathname.split('/').pop();
+    const { searchBy, sortBy } = this.props;
     const req = { query, searchBy, sortBy };
     this.props.dispatch(loadMovies(req))
   }
@@ -25,6 +28,7 @@ class Main extends React.Component {
   handleSubmit = (query) => {
     const { searchBy, sortBy } = this.props;
     const req = { query, searchBy, sortBy };
+    this.props.history.push(`/search/${query}`);
     this.props.dispatch(loadMovies(req))
   }
 
@@ -66,7 +70,7 @@ class Main extends React.Component {
           <section className='listSection'>
             {movies.length
               ? <List data={movies} />
-              : <span className='message'>No films found</span>
+              : <span className='message'>{SLOGAN}</span>
             }
           </section>
           <Footer />
