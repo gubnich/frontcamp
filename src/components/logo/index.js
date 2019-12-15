@@ -3,8 +3,7 @@ import './style.css';
 
 const Logo = () => (
   <span className='logo'>
-    <span>netflix</span>
-    <span>roulette</span>
+    <span>netflix</span>roulette
   </span>
 )
 

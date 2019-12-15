@@ -1,10 +1,10 @@
 import React from 'react';
-import './style.css';
 import Button from '../button';
+import './style.css';
 
 export default (props) => {
   const { caption1, caption2, value1, value2, selected, onChange } = props;
-  console.log('selected', selected)
+
   return (
     <div className='searchFilter'>
       <Button onClick={() => onChange(value1)} caption={caption1} value={value1} left active={selected === value1} />

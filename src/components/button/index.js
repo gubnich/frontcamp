@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 
 const Button = (props) => {
-  const { type = 'button', caption, value, className, active, left, right, onClick } = props;
+  const { type, caption, value, className, active, left, right, onClick } = props;
   const preparedClassName =
     `button`
     + ` ${className || ''}`
@@ -14,5 +14,9 @@ const Button = (props) => {
     <button onClick={onClick} className={preparedClassName} type={type} value={value}>{caption}</button>
   )
 }
+
+Button.defaultProps = {
+  type: 'button'
+};
 
 export default Button;

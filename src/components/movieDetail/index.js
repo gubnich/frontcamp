@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 
 const MovieDetail = (props) => {
-  const { poster_path = '', title = '', release_date, genres, vote_average = 0, runtime, overview = '' } = props;
+  const { poster_path, title, release_date, genres, vote_average, runtime, overview } = props;
   const date = release_date && new Date(release_date).getFullYear();
   const rating = vote_average.toFixed(1);
   const genresString = genres && genres.join(' & ');
@@ -25,5 +25,12 @@ const MovieDetail = (props) => {
     </article>
   )
 }
+
+MovieDetail.defaultProps = {
+  poster_path: '',
+  title: '',
+  vote_average: 0,
+  overview: ''
+};
 
 export default MovieDetail;

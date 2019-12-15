@@ -2,16 +2,19 @@ import React from 'react';
 import './style.css';
 import Card from '../card';
 
-export default ({ data = [] }) => {
+const List = (props) => {
+  const { data } = props;
   return (
     <ul className='list'>
       {data.map(item => (
-        <a key={item.id} href={`film/${item.id}`}>
-          <li className='listItem'>
+        <li key={item.id} className='listItem'>
+          <a href={`film/${item.id}`}>
             <Card {...item} />
-          </li>
-        </a>
+          </a>
+        </li>
       ))}
     </ul>
   )
 }
+
+export default List;

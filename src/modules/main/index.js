@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { loadMovies } from '../../actions'
-import { SLOGAN } from '../../constants';
+import { SLOGAN, NO_FILMS_MESSAGE } from '../../constants';
 import Logo from '../../components/logo';
 import Promo from '../../components/promo';
 import List from '../../components/list';
@@ -53,7 +53,7 @@ class Main extends React.Component {
           <div className='headerContent'>
             <Logo />
             <div className='headerContentInner'>
-              <h1 className='slogan'>Find your movie</h1>
+              <h1 className='slogan'>{SLOGAN}</h1>
               <Search onSubmit={this.handleSubmit} searchBy={searchBy} sortBy={sortBy} />
               <div className='searchOptions'>
                 <span className='searchCaption uppercase'>search by</span>
@@ -70,7 +70,7 @@ class Main extends React.Component {
           <section className='listSection'>
             {movies.length
               ? <List data={movies} />
-              : <span className='message'>{SLOGAN}</span>
+              : <span className='message'>{NO_FILMS_MESSAGE}</span>
             }
           </section>
         </main>
@@ -80,12 +80,9 @@ class Main extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  movies: state.main.movies,
-  total: state.main.total,
-  query: state.main.query,
-  sortBy: state.main.sortBy,
-  searchBy: state.main.searchBy,
-})
+const mapStateToProps = state => {
+  const { movies, total, query, sortBy, searchBy } = state.main;
+  return { movies, total, query, sortBy, searchBy };
+}
 
 export default connect(mapStateToProps)(Main)
