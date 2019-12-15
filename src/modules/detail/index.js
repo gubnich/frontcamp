@@ -45,8 +45,8 @@ class Detail extends React.Component {
               : <span className='message'>{NO_FILMS_MESSAGE}</span>
             }
           </section>
-          <Footer />
         </main>
+        <Footer />
       </ErrorBoundary>
     )
   }
