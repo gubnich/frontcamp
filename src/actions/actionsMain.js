@@ -1,4 +1,4 @@
-import { LOAD_MOVIES_SUCCESS, LOAD_MOVIES_PENDING, LOAD_MOVIES_ERROR } from './action-types';
+import { LOAD_MOVIES_SUCCESS, LOAD_MOVIES_PENDING, LOAD_MOVIES_ERROR } from './actionTypes';
 
 const loadMoviesPending = () => ({
   type: LOAD_MOVIES_PENDING
