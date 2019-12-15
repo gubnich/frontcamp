@@ -6,11 +6,13 @@ import Footer from '../../components/footer';
 import MovieDetail from '../../components/movieDetail';
 import ErrorBoundary from '../../components/error';
 import './style.css';
+import { connect } from 'react-redux';
+import { loadMoviesByGenre, loadMovie } from '../../actions'
 
-export default class Detail extends React.Component {
+class Detail extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { movie: {}, movies: [], genre: '' };
+    // this.state = { movie: {}, movies: [], genre: '' };
   }
 
   async getMovies({ filter }) {
@@ -24,17 +26,26 @@ export default class Detail extends React.Component {
       .then(response => response.json())
   }
 
-  async componentDidMount() {
+  // async componentDidMount() {
+  //   const movie = await this.getMovie(movieId);
+  //   const genre = movie.genres[0];
+  //   let movies;
+  //   if (genre) {
+  //     movies = await this.getMovies({ filter: genre });
+  //   }
+  //   this.setState({ movie, genre, movies });
+  // }
+  componentDidMount() {
     const movieId = window.location.pathname.split('/').pop();
-    const movie = await this.getMovie(movieId);
-    const genre = movie.genres[0];
-    let movies;
-    if (genre) {
-      movies = await this.getMovies({ filter: genre });
-    }
-    this.setState({ movie, genre, movies });
+    console.log('//////////////////////////////////',movieId)
+    this.props.dispatch(loadMovie(movieId))
+    // this.props.dispatch(loadMoviesByGenre(this.props.genre))
+    // const { query, searchBy, sortBy } = this.props;
+    // const req = { query, searchBy, sortBy };
   }
   render() {
+    const { movie, genre, movies } = this.props;
+    console.log('this.props', this.props)
     return (
       <ErrorBoundary>
         <section className='topSection'>
@@ -43,17 +54,17 @@ export default class Detail extends React.Component {
             <Logo />
             <a href='/' className='magnifier'></a>
             <div className='topSectionContentInner'>
-              <MovieDetail {...this.state.movie} />
+              <MovieDetail {...this.props.movie} />
             </div>
           </div>
         </section>
         <main className='main'>
           <section className='infoSection'>
-            <span>Films by {this.state.genre} genre</span>
+            <span>Films by {genre} genre</span>
           </section>
           <section className='listSection'>
-            {this.state.movies.length
-              ? <List data={this.state.movies} />
+            {movies.length
+              ? <List data={movies} />
               : <span className='message'>No films found</span>
             }
           </section>
@@ -63,3 +74,12 @@ export default class Detail extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  movies: state.detail.movies,
+  total: state.detail.total,
+  movie: state.detail.movie,
+  genre: state.detail.genre,
+})
+
+export default connect(mapStateToProps)(Detail)

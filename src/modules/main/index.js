@@ -77,11 +77,11 @@ class Main extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  movies: state.movies,
-  total: state.total,
-  query: state.query,
-  sortBy: state.sortBy,
-  searchBy: state.searchBy,
+  movies: state.main.movies,
+  total: state.main.total,
+  query: state.main.query,
+  sortBy: state.main.sortBy,
+  searchBy: state.main.searchBy,
 })
 
 export default connect(mapStateToProps)(Main)
