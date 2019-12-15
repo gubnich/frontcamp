@@ -73,8 +73,8 @@ class Main extends React.Component {
               : <span className='message'>{SLOGAN}</span>
             }
           </section>
-          <Footer />
         </main>
+        <Footer />
       </ErrorBoundary>
     )
   }
