@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchFilter from '../searchFilter2';
+import SearchFilter from '../searchFilter';
 import Button from '../button';
 import './style.css';
 

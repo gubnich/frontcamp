@@ -3,7 +3,7 @@ import Logo from '../../components/logo';
 import Promo from '../../components/promo';
 import List from '../../components/list';
 import Search from '../../components/search';
-import SearchFilter from '../../components/searchFilter2';
+import SearchFilter from '../../components/searchFilter';
 import Footer from '../../components/footer';
 import ErrorBoundary from '../../components/error';
 import { connect } from 'react-redux';

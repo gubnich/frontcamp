@@ -1,17 +1,14 @@
 import React from 'react';
 import './style.css';
+import Button from '../button';
 
-export default ({ form, name, value1 = '', value2 = '' }) => {
+export default (props) => {
+  const { caption1, caption2, value1, value2, selected, onChange } = props;
+  console.log('selected', selected)
   return (
-    <span>
-      <label>
-        <input form={form} className='radioButton' type='radio' name={name} value={value1} defaultChecked />
-        <span className='searchOption borderLeft'>{value1}</span>
-      </label>
-      <label>
-        <input form={form} className='radioButton' type='radio' name={name} value={value2} />
-        <span className='searchOption borderRight'>{value2}</span>
-      </label>
-    </span>
+    <div className='searchFilter'>
+      <Button onClick={() => onChange(value1)} caption={caption1} value={value1} left active={selected === value1} />
+      <Button onClick={() => onChange(value2)} caption={caption2} value={value2} right active={selected === value2} />
+    </div>
   )
 }
