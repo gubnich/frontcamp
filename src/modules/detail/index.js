@@ -1,5 +1,6 @@
 import React from 'react';
-import Header from '../../components/header';
+import Logo from '../../components/logo';
+import Promo from '../../components/promo';
 import List from '../../components/list';
 import Footer from '../../components/footer';
 import MovieDetail from '../../components/movieDetail';
@@ -36,16 +37,22 @@ export default class Detail extends React.Component {
   render() {
     return (
       <ErrorBoundary>
-        <Header>
-          <a href='/' className='magnifier'></a>
-          <MovieDetail {...this.state.movie} />
-        </Header>
+        <section className='topSection'>
+          <Promo />
+          <div className='topSectionContent'>
+            <Logo />
+            <a href='/' className='magnifier'></a>
+            <div className='topSectionContentInner'>
+              <MovieDetail {...this.state.movie} />
+            </div>
+          </div>
+        </section>
         <main className='main'>
           <section className='infoSection'>
             <span>Films by {this.state.genre} genre</span>
           </section>
           <section className='listSection'>
-            {this.state.movies.length > 0
+            {this.state.movies.length
               ? <List data={this.state.movies} />
               : <span className='message'>No films found</span>
             }

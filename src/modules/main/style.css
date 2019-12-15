@@ -13,6 +13,28 @@
   background: #555555;
 }
 
+.header {
+  min-height: 400px;
+  position: relative;
+}
+
+.headerContent {
+  position: relative;
+  padding: 10px 50px;
+}
+
+.headerContentInner {
+  padding: 30px 70px;
+}
+
+.slogan {
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+
 .result {
   font-weight: 500;
 }

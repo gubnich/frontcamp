@@ -1,5 +1,6 @@
 import React from 'react';
-import Header from '../../components/header';
+import Logo from '../../components/logo';
+import Promo from '../../components/promo';
 import List from '../../components/list';
 import Search from '../../components/search';
 import SearchFilter from '../../components/searchFilter2';
@@ -43,14 +44,20 @@ class Main extends React.Component {
     const { movies, total, sortBy, searchBy } = this.props
     return (
       <ErrorBoundary>
-        <Header>
-          <h1 className='slogan'>Find your movie</h1>
-          <Search onSubmit={this.handleSubmit} searchBy={searchBy} sortBy={sortBy} />
-          <div className='searchOptions'>
-            <span className='searchCaption uppercase'>search by</span>
-            <SearchFilter onChange={this.handleSearchBy} caption1='title' caption2='genre' value1='title' value2='genres' selected={searchBy} />
+        <header className='header'>
+          <Promo />
+          <div className='headerContent'>
+            <Logo />
+            <div className='headerContentInner'>
+              <h1 className='slogan'>Find your movie</h1>
+              <Search onSubmit={this.handleSubmit} searchBy={searchBy} sortBy={sortBy} />
+              <div className='searchOptions'>
+                <span className='searchCaption uppercase'>search by</span>
+                <SearchFilter onChange={this.handleSearchBy} caption1='title' caption2='genre' value1='title' value2='genres' selected={searchBy} />
+              </div>
+            </div>
           </div>
-        </Header>
+        </header>
         <main className='main'>
           <section className='resultsSection'>
             <div className='result'>{total} movie found</div>
