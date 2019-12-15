@@ -9,15 +9,30 @@ const initialState = {
   movies: [],
   total: 0,
   error: false,
+  pending: false,
+  query: '',
+  searchBy: 'title',
+  sortBy: 'release_date',
 };
+
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case 'LOAD_MOVIES_SUCCESS':
-      console.log('action', action.payload.total, state)
+    case 'LOAD_MOVIES_PENDING':
       return {
         ...state,
-        total: action.payload.total,
-        movies: action.payload.movies,
+        pending: true,
+      }
+    case 'LOAD_MOVIES_SUCCESS':
+      console.log('action', action.payload.total, state)
+      const { movies, total, query, searchBy, sortBy } = action.payload;
+      return {
+        ...state,
+        pending: false,
+        total,
+        movies,
+        query,
+        searchBy,
+        sortBy,
       }
     case 'LOAD_MOVIES_ERROR':
       return {

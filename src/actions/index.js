@@ -21,25 +21,19 @@ function loadMoviesError(error) {
 }
 
 export function loadMovies(payload) {
-  // console.log('/////////////////', payload)
-  const { query = '', searchBy = '', sortBy = '' } = payload;
-  // async function getMovies() {
-    //     return fetch(`https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortBy}&sortOrder=desc&search=${query}&searchBy=${searchBy}&filter=`)
-    //     .then(response => response.json())
-    //   }
-    // const { data, total } = await getMovies();
-    // return { type: LOAD_MOVIES, payload: { movies: data, total } }
-    
+  
+  const { query, searchBy, sortBy } = payload;
+     
     return dispatch => {
       dispatch(loadMoviesPending());
-    fetch(`https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortBy}&sortOrder=desc&search=${query}&searchBy=${searchBy}&filter=`)
+    fetch(`https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortBy}&sortOrder=desc&search=${query}&searchBy=${searchBy}`)
       .then(res => res.json())
       .then(res => {
         if (res.error) {
           throw (res.error);
         }
         console.log(res)
-        dispatch(loadMoviesSuccess({movies: res.data, total: res.total }));
+        dispatch(loadMoviesSuccess({movies: res.data, total: res.total, query, searchBy, sortBy }));
         return res;
       })
       .catch(error => {

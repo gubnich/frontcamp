@@ -13,58 +13,48 @@ import './style.css';
 class Main extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = { movies: [], total: 0 };
-    this.state = {
-      sortBy: 'release_date'
-    }
   }
-  
-  // async searchMovies(e) {
-  //   e.preventDefault();
-  //   const query = e.target[0].value;
-  //   const searchBy = 
-  //     e.target[2].checked ?
-  //     e.target[2].value :
-  //     e.target[3].value;
-  //     const sortBy = 
-  //     e.target[4].checked ?
-  //     'release_date' :
-  //     'vote_average';
-  //     const { data, total } = await this.getMovies(query, searchBy, sortBy);
-  //   this.setState({ movies: data, total });
-  // }
 
-  // async getMovies(query = '', searchBy = '', sortBy = '') {
-  //   return fetch(`https://reactjs-cdp.herokuapp.com/movies?sortBy=${sortBy}&sortOrder=desc&search=${query}&searchBy=${searchBy}&filter=`)
-  //   .then(response => response.json())
-  // }
-  
   componentDidMount() {
-    this.props.dispatch(loadMovies({}))
-  }
-  
-  handleSubmit() {
-    this.props.dispatch(loadMovies({}))
+    const { query, searchBy, sortBy } = this.props;
+    const req = { query, searchBy, sortBy };
+    this.props.dispatch(loadMovies(req))
   }
 
-  handleClick = () => {
-    this.setState({sortBy: this.state.sortBy === 'release_date' ? 'rating' : 'release_date'});
-    console.log(this.state.sortBy)
+  handleSubmit = (query) => {
+    const { searchBy, sortBy } = this.props;
+    const req = { query, searchBy, sortBy };
+    this.props.dispatch(loadMovies(req))
   }
 
-  render () {
-    console.log('/////////////',this.props)
-    const { movies, total } = this.props
+  handleSearchBy = (searchBy) => {
+    const { query, sortBy } = this.props;
+    const req = { query, sortBy, searchBy };
+    this.props.dispatch(loadMovies(req))
+  }
+
+  handleSortBy = (sortBy) => {
+    const { query, searchBy } = this.props;
+    const req = { query, searchBy, sortBy };
+    this.props.dispatch(loadMovies(req))
+  }
+
+  render() {
+    const { movies, total, sortBy, searchBy } = this.props
     return (
       <ErrorBoundary>
         <Header>
           <h1 className='slogan'>Find your movie</h1>
-          <Search onSubmit={this.handleSubmit} />
+          <Search onSubmit={this.handleSubmit} searchBy={searchBy} sortBy={sortBy} />
+          <div className='searchOptions'>
+            <span className='searchCaption uppercase'>search by</span>
+            <SearchFilter onChange={this.handleSearchBy} caption1='title' caption2='genre' value1='title' value2='genres' selected={searchBy} />
+          </div>
         </Header>
         <main className='main'>
           <section className='resultsSection'>
             <div className='result'>{total} movie found</div>
-            <SearchFilter onClick={this.handleClick} value1='release_date' value2='rating' selected={this.state.sortBy} />
+            <SearchFilter onChange={this.handleSortBy} caption1='release date' caption2='rating' value1='release_date' value2='vote_average' selected={sortBy} />
           </section>
           <section className='listSection'>
             {movies.length
@@ -77,11 +67,14 @@ class Main extends React.Component {
       </ErrorBoundary>
     )
   }
-  }
+}
 
 const mapStateToProps = state => ({
   movies: state.movies,
-  total: state.total
+  total: state.total,
+  query: state.query,
+  sortBy: state.sortBy,
+  searchBy: state.searchBy,
 })
 
 export default connect(mapStateToProps)(Main)
