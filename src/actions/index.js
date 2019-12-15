@@ -37,7 +37,6 @@ export function loadMovies(payload) {
         return res;
       })
       .catch(error => {
-        console.log('попали сюда', error)
         dispatch(loadMoviesError(error));
       })
   }

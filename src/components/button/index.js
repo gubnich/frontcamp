@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-export default (props) => {
+const Button = (props) => {
   const { type = 'button', caption, value, className, active, left, right, onClick } = props;
   const preparedClassName =
     `button`
@@ -14,3 +14,5 @@ export default (props) => {
     <button onClick={onClick} className={preparedClassName} type={type} value={value}>{caption}</button>
   )
 }
+
+export default Button;

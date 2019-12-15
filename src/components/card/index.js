@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-export default (props) => {
+const Card = (props) => {
   const { poster_path, title, release_date, genres } = props;
   const date = new Date(release_date).getFullYear();
   const genresString = genres.join(' & ');
@@ -19,3 +19,5 @@ export default (props) => {
     </figure>
   )
 }
+
+export default Card;
