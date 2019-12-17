@@ -7,7 +7,7 @@ const initialState = {
   total: 0
 };
 
-function detailReducer(state = initialState, action){
+function detailReducer(state = initialState, action) {
   switch (action.type) {
     case 'LOAD_MOVIES_BY_GENRE_PENDING':
       return {
@@ -15,12 +15,11 @@ function detailReducer(state = initialState, action){
         pending: true,
       }
     case 'LOAD_MOVIE_PENDING':
-    return {
-      ...state,
-      pending: true,
-    }
+      return {
+        ...state,
+        pending: true,
+      }
     case 'LOAD_MOVIES_BY_GENRE_SUCCESS':
-      console.log('action', action.payload.total, state)
       const { movies, genre, total } = action.payload;
       return {
         ...state,
@@ -29,8 +28,7 @@ function detailReducer(state = initialState, action){
         genre,
         total,
       }
-      case 'LOAD_MOVIE_SUCCESS':
-      console.log('action', action.payload, state)
+    case 'LOAD_MOVIE_SUCCESS':
       const { movie, movieGenre } = action.payload;
       return {
         ...state,
@@ -43,7 +41,7 @@ function detailReducer(state = initialState, action){
         ...state,
         error: true,
       }
-      case 'LOAD_MOVIE_ERROR':
+    case 'LOAD_MOVIE_ERROR':
       return {
         ...state,
         error: true,

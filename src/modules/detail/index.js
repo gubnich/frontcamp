@@ -8,6 +8,7 @@ import Promo from '../../components/promo';
 import List from '../../components/list';
 import Footer from '../../components/footer';
 import MovieDetail from '../../components/movieDetail';
+import Preloader from '../../components/preloader';
 import ErrorBoundary from '../../components/error';
 import './style.css';
 
@@ -22,7 +23,7 @@ class Detail extends React.Component {
   }
 
   render() {
-    const { movie, genre, movies } = this.props;
+    const { movie, genre, movies, pending } = this.props;
     return (
       <ErrorBoundary>
         <section className='topSection'>
@@ -40,9 +41,10 @@ class Detail extends React.Component {
             <span>Films by {genre} genre</span>
           </section>
           <section className='listSection'>
+            {pending && <Preloader />}
             {movies.length
               ? <List data={movies} />
-              : <span className='message'>{NO_FILMS_MESSAGE}</span>
+              : !pending && <span className='message'>{NO_FILMS_MESSAGE}</span>
             }
           </section>
         </main>
@@ -53,8 +55,8 @@ class Detail extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { movies, movie, genre } = state.detail;
-  return { movies, movie, genre };
+  const { movies, movie, genre, pending } = state.detail;
+  return { movies, movie, genre, pending };
 }
 
 export default connect(mapStateToProps)(Detail)

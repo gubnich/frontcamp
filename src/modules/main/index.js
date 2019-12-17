@@ -9,6 +9,7 @@ import List from '../../components/list';
 import Search from '../../components/search';
 import SearchFilter from '../../components/searchFilter';
 import Footer from '../../components/footer';
+import Preloader from '../../components/preloader';
 import ErrorBoundary from '../../components/error';
 
 import './style.css';
@@ -45,7 +46,7 @@ class Main extends React.Component {
   }
 
   render() {
-    const { movies, total, sortBy, searchBy } = this.props
+    const { movies, total, sortBy, searchBy, pending } = this.props
     return (
       <ErrorBoundary>
         <header className='header'>
@@ -68,9 +69,10 @@ class Main extends React.Component {
             <SearchFilter onChange={this.handleSortBy} caption1='release date' caption2='rating' value1='release_date' value2='vote_average' selected={sortBy} />
           </section>
           <section className='listSection'>
+            {pending && <Preloader />}
             {movies.length
               ? <List data={movies} />
-              : <span className='message'>{NO_FILMS_MESSAGE}</span>
+              : !pending && <span className='message'>{NO_FILMS_MESSAGE}</span>
             }
           </section>
         </main>
@@ -81,8 +83,8 @@ class Main extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { movies, total, query, sortBy, searchBy } = state.main;
-  return { movies, total, query, sortBy, searchBy };
+  const { movies, total, query, sortBy, searchBy, pending } = state.main;
+  return { movies, total, query, sortBy, searchBy, pending };
 }
 
 export default connect(mapStateToProps)(Main)

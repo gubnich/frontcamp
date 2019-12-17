@@ -8,7 +8,7 @@ const initialState = {
   sortBy: 'release_date',
 };
 
-function mainReducer(state = initialState, action){
+function mainReducer(state = initialState, action) {
   switch (action.type) {
     case 'LOAD_MOVIES_PENDING':
       return {
@@ -16,7 +16,6 @@ function mainReducer(state = initialState, action){
         pending: true,
       }
     case 'LOAD_MOVIES_SUCCESS':
-      console.log('action', action.payload.total, state)
       const { movies, total, query, searchBy, sortBy } = action.payload;
       return {
         ...state,

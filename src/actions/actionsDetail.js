@@ -1,30 +1,32 @@
-import { LOAD_MOVIES_BY_GENRE_SUCCESS, LOAD_MOVIES_BY_GENRE_PENDING, LOAD_MOVIES_BY_GENRE_ERROR,
-  LOAD_MOVIE_PENDING, LOAD_MOVIE_SUCCESS, LOAD_MOVIE_ERROR } from './actionTypes';
+import {
+  LOAD_MOVIES_BY_GENRE_SUCCESS, LOAD_MOVIES_BY_GENRE_PENDING, LOAD_MOVIES_BY_GENRE_ERROR,
+  LOAD_MOVIE_PENDING, LOAD_MOVIE_SUCCESS, LOAD_MOVIE_ERROR
+} from './actionTypes';
 
-const loadMoviesByGenrePending = () => ({
+export const loadMoviesByGenrePending = () => ({
   type: LOAD_MOVIES_BY_GENRE_PENDING
 });
 
-const loadMoviePending = () => ({
+export const loadMoviePending = () => ({
   type: LOAD_MOVIE_PENDING
 });
 
-const loadMoviesByGenreSuccess = (payload) => ({
+export const loadMoviesByGenreSuccess = (payload) => ({
   type: LOAD_MOVIES_BY_GENRE_SUCCESS,
   payload
 });
 
-const loadMovieSuccess = (payload) => ({
+export const loadMovieSuccess = (payload) => ({
   type: LOAD_MOVIE_SUCCESS,
   payload
 });
 
-const loadMoviesByGenreError = (error) => ({
+export const loadMoviesByGenreError = (error) => ({
   type: LOAD_MOVIES_BY_GENRE_ERROR,
   error
 });
 
-const loadMovieError = (error) => ({
+export const loadMovieError = (error) => ({
   type: LOAD_MOVIE_ERROR,
   error
 });
@@ -40,7 +42,6 @@ export const loadMoviesByGenre = (payload) => {
         if (res.error) {
           throw (res.error);
         }
-        console.log(res)
         dispatch(loadMoviesByGenreSuccess({ movies: res.data, total: res.total, genre }));
         return res;
       })
@@ -52,7 +53,7 @@ export const loadMoviesByGenre = (payload) => {
 
 export const loadMovie = (movieId) => {
 
-  return dispatch => {
+  return async dispatch => {
     dispatch(loadMoviePending());
     fetch(`https://reactjs-cdp.herokuapp.com/movies/${movieId}`)
       .then(res => res.json())
@@ -60,7 +61,6 @@ export const loadMovie = (movieId) => {
         if (res.error) {
           throw (res.error);
         }
-        console.log('res',res)
         dispatch(loadMovieSuccess({ movie: res, movieGenre: res.genres[0] }));
         dispatch(loadMoviesByGenre({ genre: res.genres[0] }));
         return res;

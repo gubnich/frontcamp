@@ -1,0 +1,8 @@
+.preloader {
+  width: 100px;
+  height: 100px;
+  background: url('../../assets/images/preloader.svg') no-repeat center;
+  position: fixed;
+  top: 40%;
+  left: calc(50% - 25px);
+}
