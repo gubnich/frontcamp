@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const routes: Routes = [
+  { path: '', component: MainViewComponent },
   { path: 'main', component: MainViewComponent },
   { path: 'contact', component: ContactInfoComponent },
   {path: '404', component: NotFoundComponent},

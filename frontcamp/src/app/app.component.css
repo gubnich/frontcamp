@@ -7,5 +7,5 @@
 .main {
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: 40% auto 60%;
+  grid-template-columns: 30% auto 70%;
 }
