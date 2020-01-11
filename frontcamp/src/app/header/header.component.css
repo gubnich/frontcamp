@@ -1,0 +1,8 @@
+:host {
+  height: 5rem;
+  background: rebeccapurple;
+  line-height: 5rem;
+  padding: 0 2rem;
+  color: aliceblue;
+  font-size: 1.5rem;
+}
