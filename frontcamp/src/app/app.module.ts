@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainViewComponent } from './main-view/main-view.component';
 import { ContactInfoComponent } from './contact-info/contact-info.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ContactInfoComponent } from './contact-info/contact-info.component';
     SidebarComponent,
     FooterComponent,
     MainViewComponent,
-    ContactInfoComponent
+    ContactInfoComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
