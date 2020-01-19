@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { FilterComponent } from './filter/filter.component';
 import { ArticleComponent } from './article/article.component';
 import { CardComponent } from './card/card.component';
 import { ListComponent } from './list/list.component';
+import { DetailViewComponent } from './detail-view/detail-view.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +36,13 @@ import { ListComponent } from './list/list.component';
     FilterComponent,
     ArticleComponent,
     CardComponent,
-    ListComponent
+    ListComponent,
+    DetailViewComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

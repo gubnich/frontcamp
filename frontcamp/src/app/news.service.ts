@@ -6,9 +6,10 @@ import { of, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class NewsService {
-  public selectedSourceId$ = new Subject;
+  public selectedSource$ = new Subject();
 
-  constructor() { }
+  constructor() {
+  }
 
   getSources() {
     return mock.sources;
@@ -18,12 +19,12 @@ export class NewsService {
     return mock.articles;
   }
 
-  getSelectedSourceId() {
-    return this.selectedSourceId$;
+  getSelectedSource() {
+    return this.selectedSource$;
   }
 
-  setSelectedSourceId(id) {
+  setSelectedSource(id) {
     console.log('service', id)
-    this.selectedSourceId$.next(id);
+    this.selectedSource$.next(id);
   }
 }

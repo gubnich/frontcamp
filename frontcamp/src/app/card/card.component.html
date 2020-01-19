@@ -7,7 +7,7 @@
     <span class="title">{{data.title}}</span>
     <p class="description">{{data.description}}</p>
     <p class="date">{{data.publishedAt}}</p>
-    <a href="">Read more...</a>
+    <a [routerLink]="['/detail', data.title]">Read more...</a>
   </figcaption>
 </figure>
 <div class="controls">

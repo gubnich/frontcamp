@@ -8,14 +8,16 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class SelectComponent implements OnInit {
   @Input() data;
   @Output() select = new EventEmitter();
-
-  constructor() { }
-
+  public selectedValue;
+  constructor() { 
+  }
+  
   ngOnInit() {
-    console.log('select', this.data)
+    this.selectedValue = this.data[0];
+    console.log('select', this.data);
   }
 
-  onChange(sourceId) {
-    this.select.emit(sourceId);
+  onChange() {
+    this.select.emit(this.selectedValue);
   }
 }

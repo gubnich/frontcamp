@@ -12,6 +12,5 @@ export class ControlsBarComponent implements OnInit {
   constructor(public newsService: NewsService) { }
 
   ngOnInit() {
-    console.log('bar', this.sources)
   }
 }

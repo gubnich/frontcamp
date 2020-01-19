@@ -1,9 +1,5 @@
-<select class="select" #select (change)="onChange(select.value)">
-  <option 
-    *ngFor="let datum of data"
-    value={{datum.id}}
-    >
-      {{datum.name}}
-    
+<select class="select" #select (change)="onChange()" [(ngModel)]="selectedValue">
+  <option *ngFor="let datum of data" [ngValue]="datum">
+    {{datum.name}}
   </option>
 </select>

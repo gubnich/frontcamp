@@ -1,12 +1,14 @@
 :host {
   display: flex;
   justify-content: space-between;
+  margin: 1rem 0;
 }
 
 .card {
   display: flex;
   margin: 0;
 }
+
 .posterWrapper {
   position: relative;
   padding-bottom: 100%;
