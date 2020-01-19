@@ -1,8 +1,12 @@
-:host {
-  height: 5rem;
-  background: rebeccapurple;
-  line-height: 5rem;
-  padding: 0 2rem;
-  color: aliceblue;
-  font-size: 1.5rem;
+.header {
+  padding: 2rem;
+  background: #663399;
+  color: #f0f8ff;
+}
+
+.heading {
+  background: #f0f8ff;
+  color: #663399;
+  padding: 2rem;
+  text-align: center;
 }

@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  display: flex;
+  margin: 0;
+}
+.posterWrapper {
+  position: relative;
+  padding-bottom: 100%;
+  overflow: hidden;
+}
+
+.thumbnail {
+  width: 15rem;
+}
+
+.caption {
+  padding: 20px 0;
+  color: #cccccc;
+}
+
+.date {
+  float: right;
+  padding: 3px 10px;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+}
