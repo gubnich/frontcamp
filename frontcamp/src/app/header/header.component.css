@@ -1,12 +1,10 @@
-.header {
-  padding: 2rem;
+:host {
   background: #663399;
-  color: #f0f8ff;
 }
 
-.heading {
-  background: #f0f8ff;
-  color: #663399;
+.header {
+  max-width: 1360px;
+  margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  color: #f0f8ff;
 }

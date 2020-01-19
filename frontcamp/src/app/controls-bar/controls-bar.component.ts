@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NewsService } from '../news.service';
 
 @Component({
   selector: 'app-controls-bar',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./controls-bar.component.css']
 })
 export class ControlsBarComponent implements OnInit {
+  @Input() sources;
 
-  constructor() { }
+  constructor(public newsService: NewsService) { }
 
   ngOnInit() {
+    console.log('bar', this.sources)
   }
-
 }

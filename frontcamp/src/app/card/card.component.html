@@ -1,12 +1,12 @@
 <figure class='card'>
   <!-- <div class='posterWrapper'> -->
-  <img src="https://www.aljazeera.com/mritems/Images/2020/1/19/8082c3325b9e42e582eecb854d44473c_18.jpg" alt=""
-    class='thumbnail' title="" />
+  <img src={{data.urlToImage}} alt={{data.title}}
+    class='thumbnail' title={{data.title}} />
   <!-- </div> -->
   <figcaption className='caption'>
-    <span class="title"></span>
-    <p class="description"></p>
-    <p class="date"></p>
+    <span class="title">{{data.title}}</span>
+    <p class="description">{{data.description}}</p>
+    <p class="date">{{data.publishedAt}}</p>
     <a href="">Read more...</a>
   </figcaption>
 </figure>

@@ -1,3 +1,5 @@
 <main>
-  <app-list></app-list>
+  <h2 class="heading">{{selectedSourceName}}</h2>
+  <app-controls-bar [sources]="sources" (select)="setSelectedSourceId($event)"></app-controls-bar>
+  <app-list [data]="articles"></app-list>
 </main>

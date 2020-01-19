@@ -1,5 +1,9 @@
-<select class="select">
-  <option value="op1">op1</option>
-  <option value="op2">op2</option>
-  <option value="op3">op3</option>
+<select class="select" #select (change)="onChange(select.value)">
+  <option 
+    *ngFor="let datum of data"
+    value={{datum.id}}
+    >
+      {{datum.name}}
+    
+  </option>
 </select>
