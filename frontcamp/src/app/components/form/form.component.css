@@ -1,8 +1,8 @@
 .form {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
   width: 35rem;
+  margin: 0 auto;
 }
 
 .field {

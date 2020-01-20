@@ -1,9 +1,9 @@
 :host {
   height: 5rem;
-  background: rebeccapurple;
-  line-height: 5rem;
   padding: 0 2rem;
-  color: aliceblue;
+  line-height: 5rem;
   font-size: 1rem;
   text-align: right;
+  background: rebeccapurple;
+  color: aliceblue;
 }

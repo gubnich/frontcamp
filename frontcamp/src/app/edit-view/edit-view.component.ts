@@ -8,15 +8,14 @@ import { NewsService } from '../news.service';
   styleUrls: ['./edit-view.component.css']
 })
 export class EditViewComponent implements OnInit {
-  public article = { title: 'New article'};
+  public article = { title: 'New article' };
 
-  constructor(private route: ActivatedRoute, private newsService: NewsService) { 
+  constructor(private route: ActivatedRoute, private newsService: NewsService) {
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      if(params.get('id')) this.article = this.newsService.getArticle(params.get('id'))
-      console.log(this.article)
+      if (params.get('id')) this.article = this.newsService.getArticle(params.get('id'))
     });
   }
 

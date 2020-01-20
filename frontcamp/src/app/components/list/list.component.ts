@@ -11,8 +11,6 @@ export class ListComponent implements OnInit {
 
   constructor(private newsService: NewsService) { }
 
-  ngOnInit() {
-    console.log('list', this.data[0])
-  }
+  ngOnInit() { }
 
 }

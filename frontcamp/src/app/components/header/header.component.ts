@@ -8,7 +8,6 @@ import { NewsService } from '../../news.service';
 })
 export class HeaderComponent implements OnInit {
   private sources;
-  private sourceNames;
 
   constructor(private newsService: NewsService) { }
 
@@ -16,7 +15,7 @@ export class HeaderComponent implements OnInit {
     this.getSources()
   }
 
-  getSources(): void {
+  getSources() {
     this.sources = this.newsService.getSources();
   }
 }

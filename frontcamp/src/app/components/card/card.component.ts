@@ -8,17 +8,16 @@ import {Router} from '@angular/router';
 })
 export class CardComponent implements OnInit {
   @Input() data;
+
   constructor(private router: Router) { }
 
-  ngOnInit() {
-    console.log('card', this.data)
-  }
+  ngOnInit() { }
 
   delete( ){
     console.log('delete', this.data)
   }
 
   edit() {
-    this.router.navigate(['edit'])
+    this.router.navigate([`edit/${this.data.title}`])
   }
 }

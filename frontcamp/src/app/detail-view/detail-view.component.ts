@@ -9,7 +9,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./detail-view.component.css']
 })
 export class DetailViewComponent implements OnInit {
-  public routeId;
   public article = { title: ''};
 
   constructor(private route: ActivatedRoute, private newsService: NewsService, private router: Router) {

@@ -9,12 +9,11 @@ export class SelectComponent implements OnInit {
   @Input() data;
   @Output() select = new EventEmitter();
   public selectedValue;
-  constructor() { 
+  constructor() {
   }
-  
+
   ngOnInit() {
     this.selectedValue = this.data[0];
-    console.log('select', this.data);
   }
 
   onChange() {

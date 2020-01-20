@@ -1,10 +1,10 @@
 <main class="container">
-  <article class='article'>
-    <img src={{article.urlToImage}} alt={{article.title}} class='thumbnail' title={{article.title}} />
-    <content class='content'>
+  <article class="article">
+    <img src={{article.urlToImage}} alt={{article.title}} class="thumbnail" title={{article.title}} />
+    <content class="content">
       <h3 class="title">{{article.title}}</h3>
       <div class="description">{{article.description}}</div>
-      <p class="date">{{article.publishedAt}}</p>
+      <p class="date">{{article.publishedAt | date: 'dd/MM/yyyy'}}</p>
       <p class="author">{{article.author}}</p>
     </content>
     <div class="controls">

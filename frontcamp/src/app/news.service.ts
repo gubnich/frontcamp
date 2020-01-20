@@ -20,7 +20,7 @@ export class NewsService {
   }
 
   getArticle(param) {
-    return mock.articles.find( item => item.title == param);
+    return mock.articles.find(item => item.title == param);
   }
 
   getSelectedSource() {
@@ -28,7 +28,6 @@ export class NewsService {
   }
 
   setSelectedSource(id) {
-    console.log('service', id)
     this.selectedSource$.next(id);
   }
 }

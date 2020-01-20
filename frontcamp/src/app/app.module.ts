@@ -15,7 +15,6 @@ import { ControlsBarComponent } from './components/controls-bar/controls-bar.com
 import { SelectComponent } from './components/select/select.component';
 import { ButtonComponent } from './components/button/button.component';
 import { FilterComponent } from './components/filter/filter.component';
-import { ArticleComponent } from './components/article/article.component';
 import { CardComponent } from './components/card/card.component';
 import { ListComponent } from './components/list/list.component';
 import { DetailViewComponent } from './detail-view/detail-view.component';
@@ -36,7 +35,6 @@ import { EditViewComponent } from './edit-view/edit-view.component';
     SelectComponent,
     ButtonComponent,
     FilterComponent,
-    ArticleComponent,
     CardComponent,
     ListComponent,
     DetailViewComponent,
