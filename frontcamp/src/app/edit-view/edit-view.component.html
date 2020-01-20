@@ -1,4 +1,4 @@
 <main>
   <h2 class="heading">{{article?.title}}</h2>
-  <app-form (formChange)="setArticleTitle($event)"></app-form>
+  <app-form (formChange)="setArticleTitle($event)" [data]="article"></app-form>
 </main>
