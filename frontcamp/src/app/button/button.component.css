@@ -1,0 +1,12 @@
+.button {
+  cursor: pointer;
+  background: #663399;
+  border: none;
+  color: #f0f8ff;
+  height: 100%;
+  width: 100%;
+}
+
+.button:hover {
+  box-shadow: 0 0 1px 1px #663399;
+}

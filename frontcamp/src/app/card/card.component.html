@@ -3,14 +3,14 @@
   <img src={{data.urlToImage}} alt={{data.title}}
     class='thumbnail' title={{data.title}} />
   <!-- </div> -->
-  <figcaption className='caption'>
+  <figcaption class='caption'>
     <span class="title">{{data.title}}</span>
     <p class="description">{{data.description}}</p>
-    <p class="date">{{data.publishedAt}}</p>
+    <p class="date">{{data.publishedAt | date: 'dd/MM/yyyy'}}</p>
     <a [routerLink]="['/detail', data.title]">Read more...</a>
   </figcaption>
 </figure>
 <div class="controls">
-  <app-button caption="Edit"></app-button>
-  <app-button caption="Delete"></app-button>
+  <app-button caption="Edit" class="button"></app-button>
+  <app-button caption="Delete" class="button" (click)="delete()"></app-button>
 </div>

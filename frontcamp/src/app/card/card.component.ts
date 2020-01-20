@@ -13,4 +13,7 @@ export class CardComponent implements OnInit {
     console.log('card', this.data)
   }
 
+  delete( ){
+    console.log('delete', this.data)
+  }
 }

@@ -19,6 +19,10 @@ export class NewsService {
     return mock.articles;
   }
 
+  getArticle(param) {
+    return mock.articles.find( item => item.title == param);
+  }
+
   getSelectedSource() {
     return this.selectedSource$;
   }

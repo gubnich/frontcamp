@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NewsService } from '../news.service';
 
 @Component({
   selector: 'app-detail-view',
@@ -8,19 +9,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailViewComponent implements OnInit {
   public routeId;
-  constructor(private route: ActivatedRoute) {
-    // this.routeId = params.get("id");
+  public article = {};
+
+  constructor(private route: ActivatedRoute, private newsService: NewsService) {
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      // this.products.forEach((p: Product) => {
-      //   if (p.id == params.id) {
-      //     this.product = p;
-      //   }
-      // });
-      console.log(params)
+      this.article = this.newsService.getArticle(params.get('id'))
+      console.log(this.article)
     });
   }
-
 }
