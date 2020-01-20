@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,8 @@ import { ArticleComponent } from './article/article.component';
 import { CardComponent } from './card/card.component';
 import { ListComponent } from './list/list.component';
 import { DetailViewComponent } from './detail-view/detail-view.component';
+import { FormComponent } from './form/form.component';
+import { EditViewComponent } from './edit-view/edit-view.component';
 
 @NgModule({
   declarations: [
@@ -37,12 +39,15 @@ import { DetailViewComponent } from './detail-view/detail-view.component';
     ArticleComponent,
     CardComponent,
     ListComponent,
-    DetailViewComponent
+    DetailViewComponent,
+    FormComponent,
+    EditViewComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

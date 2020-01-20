@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NewsService } from '../news.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-controls-bar',
@@ -9,8 +10,12 @@ import { NewsService } from '../news.service';
 export class ControlsBarComponent implements OnInit {
   @Input() sources;
 
-  constructor(public newsService: NewsService) { }
+  constructor(public newsService: NewsService, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  add() {
+    this.router.navigate(['add'])
   }
 }

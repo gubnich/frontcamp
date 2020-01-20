@@ -1,8 +1,5 @@
 <figure class='card'>
-  <!-- <div class='posterWrapper'> -->
-  <img src={{data.urlToImage}} alt={{data.title}}
-    class='thumbnail' title={{data.title}} />
-  <!-- </div> -->
+  <img src={{data.urlToImage}} alt={{data.title}} class='thumbnail' title={{data.title}} />
   <figcaption class='caption'>
     <span class="title">{{data.title}}</span>
     <p class="description">{{data.description}}</p>
@@ -11,6 +8,6 @@
   </figcaption>
 </figure>
 <div class="controls">
-  <app-button caption="Edit" class="button"></app-button>
+  <app-button caption="Edit" class="button" (click)="edit()"></app-button>
   <app-button caption="Delete" class="button" (click)="delete()"></app-button>
 </div>

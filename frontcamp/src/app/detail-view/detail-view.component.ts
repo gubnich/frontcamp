@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../news.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-detail-view',
@@ -9,9 +10,9 @@ import { NewsService } from '../news.service';
 })
 export class DetailViewComponent implements OnInit {
   public routeId;
-  public article = {};
+  public article = { title: ''};
 
-  constructor(private route: ActivatedRoute, private newsService: NewsService) {
+  constructor(private route: ActivatedRoute, private newsService: NewsService, private router: Router) {
   }
 
   ngOnInit() {
@@ -19,5 +20,13 @@ export class DetailViewComponent implements OnInit {
       this.article = this.newsService.getArticle(params.get('id'))
       console.log(this.article)
     });
+  }
+
+  delete( ){
+    console.log('delete', this.article)
+  }
+
+  edit() {
+    this.router.navigate([`edit/${this.article.title}`])
   }
 }

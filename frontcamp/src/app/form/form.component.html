@@ -1,0 +1,34 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label class="field">
+    Heading
+    <input type="text" class="userInput" formControlName="heading" (input)="onHeadingChange()" required >
+  </label>
+  <label class="field">
+    Short description
+    <input type="text" class="userInput" formControlName="description">
+  </label>
+  <label class="field">
+    Content
+    <textarea class="userInput" formControlName="content" required></textarea>
+  </label>
+  <label class="field">
+    Image URL
+    <input type="text" class="userInput" formControlName="imageUrl">
+  </label>
+  <label class="field">
+    Date
+    <input type="date" class="userInput" formControlName="date">
+  </label>
+  <label class="field">
+    Author
+    <input type="text" class="userInput" formControlName="author">
+  </label>
+  <label class="field">
+    Source URL
+    <input type="text" class="userInput" formControlName="sourceUrl">
+  </label>
+  <div class="controls">
+    <app-button caption="Save" class="button" type="submit" [disabled]="!form.valid"></app-button>
+    <app-button caption="Cancel" class="button" type="reset"></app-button>
+  </div>
+</form>

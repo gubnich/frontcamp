@@ -8,8 +8,8 @@
       <p class="author">{{article.author}}</p>
     </content>
     <div class="controls">
-      <app-button caption="Edit"></app-button>
-      <app-button caption="Delete"></app-button>
+      <app-button class="button" caption="Edit" (click)="edit()"></app-button>
+      <app-button class="button" caption="Delete" (click)="delete()"></app-button>
     </div>
   </article>
 </main>
