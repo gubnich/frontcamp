@@ -10,3 +10,8 @@
 .button:hover {
   box-shadow: 0 0 1px 1px #663399;
 }
+
+.button[disabled] {
+  background-color: #cccccc;
+  box-shadow: none;
+}

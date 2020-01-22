@@ -17,6 +17,10 @@
   max-width: 20rem;
 }
 
+.userInput.ng-invalid {
+  border: 1px solid #ff6347;
+}
+
 .button {
   height: 2rem;
   display: block;
