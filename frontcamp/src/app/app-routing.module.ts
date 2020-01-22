@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainViewComponent } from './main-view/main-view.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { DetailViewComponent } from './detail-view/detail-view.component';
-import { EditViewComponent } from './edit-view/edit-view.component';
+import { MainViewComponent } from './routeComponents/main-view/main-view.component';
+import { NotFoundComponent } from './routeComponents/not-found/not-found.component';
+import { DetailViewComponent } from './routeComponents/detail-view/detail-view.component';
+import { EditViewComponent } from './routeComponents/edit-view/edit-view.component';
 
 
 const routes: Routes = [
