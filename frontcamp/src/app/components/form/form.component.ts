@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-form',
@@ -19,7 +20,7 @@ export class FormComponent implements OnInit {
   };
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private location: Location) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -39,5 +40,9 @@ export class FormComponent implements OnInit {
 
   onSubmit() {
     console.log('submit', this.form.value)
+  }
+
+  back() {
+    this.location.back()
   }
 }

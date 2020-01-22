@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -9,15 +8,12 @@ import {Router} from '@angular/router';
 export class CardComponent implements OnInit {
   @Input() data;
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() { }
 
-  delete( ){
+  delete() {
     console.log('delete', this.data)
   }
 
-  edit() {
-    this.router.navigate([`edit/${this.data.title}`])
-  }
 }

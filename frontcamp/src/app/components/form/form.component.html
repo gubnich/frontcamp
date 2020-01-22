@@ -29,6 +29,6 @@
   </label>
   <div class="controls">
     <app-button caption="Save" class="button" type="submit" [disabled]="!form.valid"></app-button>
-    <app-button caption="Cancel" class="button" type="reset"></app-button>
+    <app-button caption="Cancel" class="button" (click)="back()"></app-button>
   </div>
 </form>
