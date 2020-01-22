@@ -5,10 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainViewComponent } from './main-view/main-view.component';
-import { ContactInfoComponent } from './components/contact-info/contact-info.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { ControlsBarComponent } from './components/controls-bar/controls-bar.component';
@@ -25,10 +23,8 @@ import { EditViewComponent } from './edit-view/edit-view.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidebarComponent,
     FooterComponent,
     MainViewComponent,
-    ContactInfoComponent,
     NotFoundComponent,
     LogoComponent,
     ControlsBarComponent,
