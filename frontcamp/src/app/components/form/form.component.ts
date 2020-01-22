@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 
@@ -8,7 +8,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-  @Output() formChange = new EventEmitter();
   @Input() data = {
     title: '',
     description: '',
@@ -32,10 +31,6 @@ export class FormComponent implements OnInit {
       author: [this.data.author],
       sourceUrl: [this.data.sourceUrl],
     });
-  }
-
-  onHeadingChange() {
-    this.formChange.emit(this.form.value.heading);
   }
 
   onSubmit() {

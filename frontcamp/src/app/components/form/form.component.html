@@ -1,7 +1,7 @@
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
   <label class="field">
     Heading
-    <input type="text" class="userInput" formControlName="heading" (input)="onHeadingChange()" required>
+    <input type="text" class="userInput" formControlName="heading">
   </label>
   <label class="field">
     Short description
@@ -9,7 +9,7 @@
   </label>
   <label class="field">
     Content
-    <textarea class="userInput" formControlName="content" required></textarea>
+    <textarea class="userInput" formControlName="content"></textarea>
   </label>
   <label class="field">
     Image URL

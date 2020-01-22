@@ -11,8 +11,7 @@ const routes: Routes = [
   { path: '', component: MainViewComponent },
   { path: 'main', component: MainViewComponent },
   { path: 'detail/:id', component: DetailViewComponent },
-  { path: 'add', component: EditViewComponent },
-  { path: 'edit', component: EditViewComponent },
+  { path: 'create', component: EditViewComponent },
   { path: 'edit/:id', component: EditViewComponent },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' }
