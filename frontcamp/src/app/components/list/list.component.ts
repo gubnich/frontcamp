@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { NewsService } from '../../services/news/news.service';
 
 @Component({

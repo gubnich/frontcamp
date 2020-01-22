@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { NewsService } from '../../services/news/news.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-detail-view',

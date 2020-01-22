@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NewsService } from '../../services/news/news.service';
 import { Router } from '@angular/router';
+
+import { NewsService } from '../../services/news/news.service';
 
 @Component({
   selector: 'app-controls-bar',

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { MainViewComponent } from './routeComponents/main-view/main-view.component';
 import { NotFoundComponent } from './routeComponents/not-found/not-found.component';
 import { DetailViewComponent } from './routeComponents/detail-view/detail-view.component';
