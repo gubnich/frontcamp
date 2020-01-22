@@ -6,7 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
-  @Input() data;
+  @Input() data = {
+    urlToImage: 'https://via.placeholder.com/700x394.png?text=News+aggregator'
+  };
 
   constructor() { }
 
