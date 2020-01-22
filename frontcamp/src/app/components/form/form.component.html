@@ -1,31 +1,31 @@
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
   <label class="field">
     Heading
-    <input type="text" class="userInput" formControlName="heading">
+    <input type="text" class="userInput" formControlName="heading" name="heading">
   </label>
   <label class="field">
     Short description
-    <input type="text" class="userInput" formControlName="description">
+    <input type="text" class="userInput" formControlName="description" name="description">
   </label>
   <label class="field">
     Content
-    <textarea class="userInput" formControlName="content"></textarea>
+    <textarea class="userInput" formControlName="content" name="content"></textarea>
   </label>
   <label class="field">
     Image URL
-    <input type="text" class="userInput" formControlName="imageUrl">
+    <input type="text" class="userInput" formControlName="imageUrl" name="imageUrl">
   </label>
   <label class="field">
     Date
-    <input type="date" class="userInput" formControlName="date">
+    <input type="date" class="userInput" formControlName="date" name="date">
   </label>
   <label class="field">
     Author
-    <input type="text" class="userInput" formControlName="author">
+    <input type="text" class="userInput" formControlName="author" name="author">
   </label>
   <label class="field">
     Source URL
-    <input type="text" class="userInput" formControlName="sourceUrl">
+    <input type="text" class="userInput" formControlName="sourceUrl" name="sourceUrl">
   </label>
   <div class="controls">
     <app-button caption="Save" class="button" type="submit" [disabled]="!form.valid"></app-button>
