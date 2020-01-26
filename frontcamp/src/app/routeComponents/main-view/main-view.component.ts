@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { NewsService } from '../../services/news/news.service';
+import { tap, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-main-view',
@@ -9,30 +11,39 @@ import { NewsService } from '../../services/news/news.service';
 })
 export class MainViewComponent implements OnInit {
   public sources;
-  public articles;
+  public articles$: Observable<any>;
   public selectedSource;
+  public sources$: Observable<Array<{}>>;
 
   constructor(private newsService: NewsService) {
     this.newsService.getSelectedSource().subscribe(
-      source => this.selectedSource = this.sources.find(item => item.id === source['id'])
-    );
+      source => {
+        this.selectedSource = source;
+        this.getArticles(source['id'])
+      })
+      
+    
   }
 
   ngOnInit() {
     this.getSources();
-    this.getArticles();
-    this.selectedSource = this.sources[0]
+    // this.getArticles();
+    this.sources$.subscribe(item => this.selectedSource = item[0])
+  }
+
+  setSelectedSource(val) {
+   
   }
 
   getSources() {
-    this.sources = this.newsService.getSources();
+    this.sources$ = this.newsService.getSources();
   }
 
-  getArticles() {
-    this.articles = this.newsService.getArticles();
+  getArticles(sourceId) {
+    this.articles$ = this.newsService.getArticles(sourceId);
   }
 
   loadMore() {
-    this.articles = [...this.articles, ...this.newsService.getArticles()];
+    // this.articles = [...this.articles, ...this.newsService.getArticles()];
   }
 }

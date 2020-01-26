@@ -20,7 +20,10 @@
 }
 
 .thumbnail {
-  height: 15rem;
+  max-height: 15rem;
+  min-height: 15rem;
+  min-width: 25rem;
+  max-width: 25rem;
 }
 
 .controls {

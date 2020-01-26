@@ -13,7 +13,9 @@ export class ControlsBarComponent implements OnInit {
 
   constructor(public newsService: NewsService, private router: Router) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    // console.log('/////////////', this.sources)
+  }
 
   add() {
     this.router.navigate(['add'])

@@ -1,6 +1,6 @@
 <main>
   <h2 class="heading">{{selectedSource?.name}}</h2>
-  <app-controls-bar [sources]="sources" (select)="setSelectedSourceId($event)"></app-controls-bar>
-  <app-list [data]="articles"></app-list>
+  <app-controls-bar [sources]="(sources$ | async) || []" (select)="setSelectedSourceId($event)"></app-controls-bar>
+  <app-list [data]="(articles$ | async) || []"></app-list>
   <button class="loadMoreButton" (click)="loadMore()">Load More</button>
 </main>
