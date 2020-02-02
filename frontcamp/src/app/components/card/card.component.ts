@@ -9,7 +9,7 @@ export class CardComponent implements OnInit {
   @Input() data = {
     urlToImage: 'https://via.placeholder.com/700x394.png?text=News+aggregator'
   };
-
+  @Input() type;
   constructor() { }
 
   ngOnInit() { }

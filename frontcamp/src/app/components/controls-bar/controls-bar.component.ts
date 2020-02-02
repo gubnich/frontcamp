@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NewsService } from '../../services/news/news.service';
@@ -10,7 +10,7 @@ import { NewsService } from '../../services/news/news.service';
 })
 export class ControlsBarComponent implements OnInit {
   @Input() sources;
-
+  @Output() showLocal = new EventEmitter;
   constructor(public newsService: NewsService, private router: Router) { }
 
   ngOnInit() { 
@@ -19,5 +19,9 @@ export class ControlsBarComponent implements OnInit {
 
   add() {
     this.router.navigate(['add'])
+  }
+
+  onCheckboxChange() {
+    this.showLocal.emit();
   }
 }

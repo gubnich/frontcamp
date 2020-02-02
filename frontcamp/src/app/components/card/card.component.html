@@ -4,10 +4,10 @@
     <span class="title">{{data.title}}</span>
     <p class="description">{{data.description}}</p>
     <p class="date">{{data.publishedAt | date: 'dd/MM/yyyy'}}</p>
-    <a [routerLink]="['/detail', data.title]">Read more...</a>
+    <a [routerLink]="type === 'local' ? ['/detail/local', data.id] : ['/detail', data.title]">Read more...</a>
   </figcaption>
 </figure>
 <div class="controls">
-  <app-button caption="Edit" class="button" [routerLink]="['/edit', data.title]"></app-button>
-  <app-button caption="Delete" class="button" (click)="delete()"></app-button>
+  <app-button *ngIf="type === 'local'" caption="Edit" class="button" [routerLink]="['/edit', data.title]"></app-button>
+  <app-button *ngIf="type === 'local'" caption="Delete" class="button" (click)="delete()"></app-button>
 </div>

@@ -10,13 +10,21 @@ import { NewsService } from '../../services/news/news.service';
 })
 export class DetailViewComponent implements OnInit {
   public article = { title: ''};
+  public isLocal;
 
   constructor(private route: ActivatedRoute, private newsService: NewsService, private router: Router) {
+    this.isLocal = this.route.snapshot.url[1].path === 'local';
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.article = this.newsService.getArticle(params.get('id'))
+      if(this.isLocal) {
+        this.newsService.getLocalArticle(params.get('id')).then(
+          res => this.article = res as any
+        )
+      } else {
+        this.article = this.newsService.getArticle(params.get('id'))
+      }
       console.log(this.article)
     });
   }

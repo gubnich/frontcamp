@@ -12,6 +12,7 @@ const  API_KEY = 'ba5992c165544bceb02618e82aa9d2ff';
 })
 export class NewsService {
   public selectedSource$ = new Subject();
+  public showLocalOnly = false;
   constructor(private http: HttpClient) {
   }
 
@@ -38,6 +39,10 @@ export class NewsService {
 
   getArticle(param) {
     return mock.articles.find(item => item.title == param);
+  }
+
+  getLocalArticle(id) {
+    return this.http.get(`/local/article/${id}`).toPromise();
   }
 
   createArticle(article) {

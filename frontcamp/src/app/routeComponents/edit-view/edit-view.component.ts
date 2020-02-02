@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NewsService } from '../../services/news/news.service';
@@ -6,7 +6,8 @@ import { NewsService } from '../../services/news/news.service';
 @Component({
   selector: 'app-edit-view',
   templateUrl: './edit-view.component.html',
-  styleUrls: ['./edit-view.component.css']
+  styleUrls: ['./edit-view.component.css'],
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditViewComponent implements OnInit {
   public title;

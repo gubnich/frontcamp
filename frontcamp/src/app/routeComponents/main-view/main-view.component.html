@@ -1,7 +1,8 @@
 <main>
   <h2 class="heading">{{selectedSource?.name}}</h2>
-  <app-controls-bar [sources]="(sources$ | async) || []" (select)="setSelectedSourceId($event)"></app-controls-bar>
-  <app-list [data]="(articles$ || [])"></app-list>
-  <app-list [data]="(localArticles || [])"></app-list>
+  <app-controls-bar [sources]="(sources$ | async) || []" (select)="setSelectedSourceId($event)" (showLocal)="setShowLocalOnly()"></app-controls-bar>
+  <app-list *ngIf="!showLocalOnly" [data]="(articles$ || [])"></app-list>
+  <!-- <app-list [data]="(localArticles || [])"></app-list> -->
+  <app-card *ngFor="let article of localArticles || []" [data]="article" [type]="'local'"></app-card>
   <button class="loadMoreButton" (click)="loadMore()">Load More</button>
 </main>

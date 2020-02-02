@@ -26,8 +26,15 @@ app.get('/local/all', function (req, res, next) {
   res.json(localNews);
 });
 
+app.get('/local/article/:id', function (req, res, next) {
+  const { id } = req.params;
+  console.log('get', localNews)
+
+  res.json(localNews[id]);
+});
+
 app.put('/local/add', function (req, res, next) {
-  localNews.push(req.body)
+  localNews.push({...req.body, id: localNews.length});
   console.log('put', req.body)
 
   res.json(localNews);

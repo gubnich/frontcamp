@@ -16,6 +16,7 @@ export class MainViewComponent implements OnInit {
   public localArticles;
   public selectedSource;
   public sources$: Observable<Array<{}>>;
+  public showLocalOnly = false;
 
   constructor(private newsService: NewsService) {
     this.newsService.getSelectedSource().subscribe(
@@ -36,6 +37,10 @@ export class MainViewComponent implements OnInit {
 
   setSelectedSource(val) {
    
+  }
+
+  setShowLocalOnly() {
+    this.showLocalOnly = !this.showLocalOnly;
   }
 
   getSources() {
