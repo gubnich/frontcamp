@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { NewsService } from '../../services/news/news.service';
-import { tap, map } from 'rxjs/operators';
+import { tap, map, toArray } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -11,7 +11,8 @@ import { Observable, of } from 'rxjs';
 })
 export class MainViewComponent implements OnInit {
   public sources;
-  public articles$: Observable<any>;
+  // public articles$: Observable<any>;
+  public articles$;
   public selectedSource;
   public sources$: Observable<Array<{}>>;
 
@@ -27,7 +28,7 @@ export class MainViewComponent implements OnInit {
 
   ngOnInit() {
     this.getSources();
-    // this.getArticles();
+    this.getArticles('abc-news-au');
     this.sources$.subscribe(item => this.selectedSource = item[0])
   }
 
@@ -40,10 +41,15 @@ export class MainViewComponent implements OnInit {
   }
 
   getArticles(sourceId) {
-    this.articles$ = this.newsService.getArticles(sourceId);
+    // this.articles$ = this.newsService.getArticles(sourceId);
+    this.newsService.getArticles(sourceId).then(
+      res => this.articles$ = res
+    );
   }
 
-  loadMore() {
-    // this.articles = [...this.articles, ...this.newsService.getArticles()];
+  loadMore(sourceId) {
+    this.newsService.getArticles(sourceId).then(
+      res => this.articles$ = [...this.articles$, ...res]
+    );
   }
 }
