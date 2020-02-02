@@ -13,6 +13,7 @@ export class MainViewComponent implements OnInit {
   public sources;
   // public articles$: Observable<any>;
   public articles$;
+  public localArticles;
   public selectedSource;
   public sources$: Observable<Array<{}>>;
 
@@ -29,7 +30,8 @@ export class MainViewComponent implements OnInit {
   ngOnInit() {
     this.getSources();
     this.getArticles('abc-news-au');
-    this.sources$.subscribe(item => this.selectedSource = item[0])
+    this.sources$.subscribe(item => this.selectedSource = item[0]);
+    this.getLocalArticles();
   }
 
   setSelectedSource(val) {
@@ -44,6 +46,13 @@ export class MainViewComponent implements OnInit {
     // this.articles$ = this.newsService.getArticles(sourceId);
     this.newsService.getArticles(sourceId).then(
       res => this.articles$ = res
+    );
+  }
+
+  getLocalArticles() {
+    // this.articles$ = this.newsService.getArticles(sourceId);
+    this.newsService.getLocalArticles().then(
+      res => this.localArticles = res
     );
   }
 

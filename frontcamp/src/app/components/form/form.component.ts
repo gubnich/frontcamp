@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 
@@ -17,24 +17,26 @@ export class FormComponent implements OnInit {
     author: '',
     sourceUrl: ''
   };
+  @Output() submitEvent = new EventEmitter;
   form: FormGroup;
 
   constructor(private fb: FormBuilder, private location: Location) { }
 
   ngOnInit() {
     this.form = this.fb.group({
-      heading: [this.data.title, [Validators.required]],
+      title: [this.data.title, [Validators.required]],
       description: [this.data.description],
       content: [this.data.content, [Validators.required]],
       imageUrl: [this.data.urlToImage],
-      date: [this.data.publishedAt && new Date(this.data.publishedAt).toISOString().substr(0, 10)],
+      date: [this.data.publishedAt ? new Date(this.data.publishedAt).toISOString().substr(0, 10): new Date().toISOString().substr(0, 10)],
       author: [this.data.author],
       sourceUrl: [this.data.sourceUrl],
     });
   }
 
   onSubmit() {
-    console.log('submit', this.form.value)
+    // console.log('submit', this.form.value)
+    this.submitEvent.emit(this.form.value);
   }
 
   back() {

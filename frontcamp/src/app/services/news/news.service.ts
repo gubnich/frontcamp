@@ -31,8 +31,19 @@ export class NewsService {
       return of(mock.articles).toPromise();
   }
 
+  getLocalArticles() {
+    
+    return this.http.get(`/local/all`).toPromise();
+  }
+
   getArticle(param) {
     return mock.articles.find(item => item.title == param);
+  }
+
+  createArticle(article) {
+    console.log('service create')
+    return this.http.put(`/local/add`, article).toPromise()
+    // fetch(`/local/`, article)
   }
 
   getSelectedSource() {

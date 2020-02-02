@@ -1,5 +1,5 @@
 <figure class='card'>
-  <img src={{data.urlToImage}} alt={{data.title}} class='thumbnail' title={{data.title}} />
+  <img src="{{data.urlToImage || 'assets/placeholder-img.jpg'}}" alt={{data.title}} class='thumbnail' title={{data.title}} />
   <figcaption class='caption'>
     <span class="title">{{data.title}}</span>
     <p class="description">{{data.description}}</p>
