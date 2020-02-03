@@ -4,6 +4,7 @@ import { NewsService } from '../../services/news/news.service';
 import { tap, map, toArray } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { CardComponent } from 'src/app/components/card/card.component';
+import { FilterPipe } from 'src/app/pipes/filter.pipe';
 
 @Component({
   selector: 'app-main-view',
@@ -24,7 +25,7 @@ export class MainViewComponent implements OnInit {
   @ViewChild("newsContainer", { read: ViewContainerRef, static: false }) newsContainer;
   newsComponentRef: ComponentRef<any>;
 
-  constructor(private newsService: NewsService, private resolver: ComponentFactoryResolver, private cd: ChangeDetectorRef) {
+  constructor(private newsService: NewsService, private resolver: ComponentFactoryResolver, private cd: ChangeDetectorRef, private filterPipe: FilterPipe) {
     this.newsService.getSelectedSource().subscribe(
       source => {
         this.selectedSource = source;
@@ -32,6 +33,14 @@ export class MainViewComponent implements OnInit {
       })
 
 
+    this.newsService.getFilterValue().subscribe(
+      value => {
+        this.newsContainer.clear();
+        this.filterPipe.transform(this.articles, value).forEach(element => {
+          console.log(element)
+          this.createComponent('', element)
+        })
+      })
   }
 
   ngOnInit() {
@@ -113,5 +122,9 @@ export class MainViewComponent implements OnInit {
     this.newsService.getArticles(sourceId).then(
       res => this.articles = [...this.articles, ...res]
     );
+  }
+
+  filterArticles(e) {
+    console.log('///////////////////', e)
   }
 }

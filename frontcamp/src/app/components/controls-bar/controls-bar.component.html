@@ -1,6 +1,6 @@
 <div class="bar">
   <app-select [data]="sources" (select)='newsService.setSelectedSource($event)'></app-select>
-  <app-filter class="filter"></app-filter>
+  <app-filter class="filter" (filter)="newsService.setFilterValue($event)"></app-filter>
   <label>
     <input type="checkbox" (change)="onCheckboxChange($event)">
     Only created by me

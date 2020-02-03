@@ -1,10 +1,11 @@
 <main>
   <h2 class="heading">{{selectedSource?.name}}</h2>
-  <app-controls-bar [sources]="(sources$ | async) || []" (select)="setSelectedSourceId($event)" (showLocal)="setShowLocalOnly($event)"></app-controls-bar>
+  <app-controls-bar [sources]="(sources$ | async) || []" (select)="setSelectedSourceId($event)"
+    (showLocal)="setShowLocalOnly($event)" (filter)="filterArticles($event)"></app-controls-bar>
   <!-- <app-list *ngIf="!showLocalOnly" [data]="(articles$ || [])"></app-list> -->
   <!-- <app-list [data]="(localArticles || [])"></app-list> -->
   <!-- <app-card *ngFor="let article of localArticles || []" [data]="article" [type]="'local'"></app-card> -->
-    <div #newsContainer></div>
+  <div #newsContainer></div>
 
   <div #localNewsContainer></div>
   <button class="loadMoreButton" (click)="loadMore()">Load More</button>

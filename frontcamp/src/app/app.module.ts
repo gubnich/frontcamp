@@ -19,6 +19,7 @@ import { ListComponent } from './components/list/list.component';
 import { DetailViewComponent } from './routeComponents/detail-view/detail-view.component';
 import { FormComponent } from './components/form/form.component';
 import { EditViewComponent } from './routeComponents/edit-view/edit-view.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { EditViewComponent } from './routeComponents/edit-view/edit-view.compone
     DetailViewComponent,
     FormComponent,
     EditViewComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ import { EditViewComponent } from './routeComponents/edit-view/edit-view.compone
     HttpClientModule,
   ],
   entryComponents: [CardComponent],
-  providers: [],
+  providers: [FilterPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,7 +7,7 @@
       <p class="date">{{article.publishedAt | date: 'dd/MM/yyyy'}}</p>
       <p class="author">{{article.author}}</p>
     </content>
-    <div class="controls">
+    <div *ngIf="isLocal" class="controls">
       <app-button class="button" caption="Edit" (click)="edit()"></app-button>
       <app-button class="button" caption="Delete" (click)="delete()"></app-button>
     </div>

@@ -12,6 +12,7 @@ const  API_KEY = 'ba5992c165544bceb02618e82aa9d2ff';
 })
 export class NewsService {
   public selectedSource$ = new Subject();
+  public filterValue$ = new Subject();
   public showLocalOnly = false;
   constructor(private http: HttpClient) {
   }
@@ -58,5 +59,14 @@ export class NewsService {
   setSelectedSource(id) {
     console.log('id',id)
     this.selectedSource$.next(id);
+  }
+
+  setFilterValue(value) {
+    console.log('filter',value)
+    this.filterValue$.next(value);
+  }
+
+  getFilterValue() {
+    return this.filterValue$
   }
 }

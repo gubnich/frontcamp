@@ -1,2 +1,2 @@
-<input type="text">
-<app-button caption='filter'></app-button>
+<input type="text" #input>
+<app-button caption='filter' (click)="onChange(input.value)"></app-button>
