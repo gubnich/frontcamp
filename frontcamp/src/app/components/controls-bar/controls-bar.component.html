@@ -2,7 +2,7 @@
   <app-select [data]="sources" (select)='newsService.setSelectedSource($event)'></app-select>
   <app-filter class="filter"></app-filter>
   <label>
-    <input type="checkbox" (change)="onCheckboxChange()">
+    <input type="checkbox" (change)="onCheckboxChange($event)">
     Only created by me
   </label>
   <app-button caption='Add Article' [routerLink]="['/create']"></app-button>

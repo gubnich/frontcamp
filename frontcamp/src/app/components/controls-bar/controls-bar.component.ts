@@ -21,7 +21,7 @@ export class ControlsBarComponent implements OnInit {
     this.router.navigate(['add'])
   }
 
-  onCheckboxChange() {
-    this.showLocal.emit();
+  onCheckboxChange($event) {
+    this.showLocal.emit($event.target.checked);
   }
 }

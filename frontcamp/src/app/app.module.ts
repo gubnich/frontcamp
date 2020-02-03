@@ -45,6 +45,7 @@ import { EditViewComponent } from './routeComponents/edit-view/edit-view.compone
     ReactiveFormsModule,
     HttpClientModule,
   ],
+  entryComponents: [CardComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
