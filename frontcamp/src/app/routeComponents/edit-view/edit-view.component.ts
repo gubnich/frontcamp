@@ -19,24 +19,20 @@ export class EditViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(params => {
-      this.article = this.newsService.getArticle()
-    // });
+    this.article = this.newsService.getArticle()
   }
 
   submit(e) {
     this[this.title](e);
   }
-  
+
   create(e) {
-    console.log('submit', e)
     this.newsService.createArticle(e).then(
       () => this.message = 'Saved!'
     )
   }
 
   edit(e) {
-    console.log('submit', e)
     this.newsService.editArticle(e).then(
       () => this.message = 'Changes saved!'
     )
