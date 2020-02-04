@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { NewsService } from '../../services/news/news.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -14,19 +12,14 @@ export class ControlsBarComponent implements OnInit {
   @Output() showLocal = new EventEmitter;
   public isLogged = false;
 
-  constructor(public newsService: NewsService, private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.userService.getUser().subscribe(
       user => {
-        console.log('////////////', user)
         this.isLogged = user ? true : false;
       }
     )
-  }
-
-  add() {
-    this.router.navigate(['add'])
   }
 
   onCheckboxChange($event) {
