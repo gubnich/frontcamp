@@ -18,9 +18,6 @@
 .controls {
   display: flex;
   line-height: 2rem;
-  /* align-items: center; */
-  /* width: 7rem; */
-  /* justify-content: space-between; */
 }
 
 .userName {

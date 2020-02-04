@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 import { UserService } from 'src/app/services/user/user.service';
+import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({
   selector: 'app-controls-bar',
@@ -12,7 +13,7 @@ export class ControlsBarComponent implements OnInit {
   @Output() showLocal = new EventEmitter;
   public isLogged = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private newsService: NewsService) { }
 
   ngOnInit() {
     this.userService.getUser().subscribe(
