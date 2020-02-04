@@ -12,26 +12,16 @@ export class DetailViewComponent implements OnInit {
   public article = {};
   public isLocal;
   public message = '';
-  
+
   constructor(private route: ActivatedRoute, private newsService: NewsService, private router: Router) {
     this.isLocal = this.route.snapshot.url[1].path === 'local';
   }
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(params => {
-    //   if(this.isLocal) {
-    //     this.newsService.getLocalArticle(params.get('id')).then(
-    //       res => this.article = res as any
-    //     )
-    //   } else {
-        this.article = this.newsService.getArticle()
-      // }
-      console.log(this.article)
-    // });
+    this.article = this.newsService.getArticle()
   }
 
-  delete( ){
-    console.log('delete', this.article)
+  delete() {
     this.newsService.deleteArticle(this.article['id']).then(
       res => this.message = 'deleted'
     )
