@@ -15,7 +15,6 @@ import { SelectComponent } from './components/select/select.component';
 import { ButtonComponent } from './components/button/button.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { CardComponent } from './components/card/card.component';
-import { ListComponent } from './components/list/list.component';
 import { DetailViewComponent } from './routeComponents/detail-view/detail-view.component';
 import { FormComponent } from './components/form/form.component';
 import { EditViewComponent } from './routeComponents/edit-view/edit-view.component';
@@ -35,7 +34,6 @@ import { Guard } from './guards/app.guard';
     ButtonComponent,
     FilterComponent,
     CardComponent,
-    ListComponent,
     DetailViewComponent,
     FormComponent,
     EditViewComponent,
