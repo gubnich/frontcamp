@@ -2,4 +2,9 @@
   <a href="/" class="logo">
     <app-logo></app-logo>
   </a>
+  <div class='controls'>
+    <span class="userName">{{user}}</span>
+    <app-button *ngIf="user" caption='Logout' (click)="logout()"></app-button>
+    <app-button *ngIf="!user" caption='Login' (click)="login()"></app-button>
+  </div>
 </header>

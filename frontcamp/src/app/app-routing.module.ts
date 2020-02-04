@@ -5,14 +5,14 @@ import { MainViewComponent } from './routeComponents/main-view/main-view.compone
 import { NotFoundComponent } from './routeComponents/not-found/not-found.component';
 import { DetailViewComponent } from './routeComponents/detail-view/detail-view.component';
 import { EditViewComponent } from './routeComponents/edit-view/edit-view.component';
-
+import { Guard } from './guards/app.guard';
 
 const routes: Routes = [
   { path: '', component: MainViewComponent },
   { path: 'main', component: MainViewComponent },
   { path: 'detail/world', component: DetailViewComponent },
   { path: 'detail/local', component: DetailViewComponent },
-  { path: 'create', component: EditViewComponent },
+  { path: 'create', component: EditViewComponent, canActivate: [Guard] },
   { path: 'edit/:id', component: EditViewComponent },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' }

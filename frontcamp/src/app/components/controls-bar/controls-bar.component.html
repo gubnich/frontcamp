@@ -1,9 +1,9 @@
 <div class="bar">
   <app-select [data]="sources" (select)='newsService.setSelectedSource($event)'></app-select>
   <app-filter class="filter" (filter)="newsService.setFilterValue($event)"></app-filter>
-  <label>
+  <label *ngIf="isLogged">
     <input type="checkbox" (change)="onCheckboxChange($event)">
     Only created by me
   </label>
-  <app-button caption='Add Article' [routerLink]="['/create']"></app-button>
+  <app-button *ngIf="isLogged" caption='Add Article' [routerLink]="['/create']"></app-button>
 </div>

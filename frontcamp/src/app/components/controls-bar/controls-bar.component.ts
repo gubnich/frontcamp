@@ -2,6 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NewsService } from '../../services/news/news.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-controls-bar',
@@ -11,10 +12,17 @@ import { NewsService } from '../../services/news/news.service';
 export class ControlsBarComponent implements OnInit {
   @Input() sources;
   @Output() showLocal = new EventEmitter;
-  constructor(public newsService: NewsService, private router: Router) { }
+  public isLogged = false;
+
+  constructor(public newsService: NewsService, private userService: UserService, private router: Router) { }
 
   ngOnInit() { 
-    // console.log('/////////////', this.sources)
+    this.userService.getUser().subscribe(
+      user => {
+        console.log('////////////', user)
+        this.isLogged = user ? true : false;
+      }
+    )
   }
 
   add() {

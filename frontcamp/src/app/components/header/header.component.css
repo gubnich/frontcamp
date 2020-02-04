@@ -3,6 +3,8 @@
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
   max-width: 1360px;
   margin: 0 auto;
   padding: 2rem;
@@ -11,4 +13,16 @@
 
 .logo {
   text-decoration: none;
+}
+
+.controls {
+  display: flex;
+  line-height: 2rem;
+  /* align-items: center; */
+  /* width: 7rem; */
+  /* justify-content: space-between; */
+}
+
+.userName {
+  margin-right: 1rem;
 }

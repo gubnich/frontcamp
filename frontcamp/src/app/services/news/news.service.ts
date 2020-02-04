@@ -32,7 +32,7 @@ export class NewsService {
     // this.http.get<{articles: []}>(`https://newsapi.org/v2/top-headlines?sources=${sourceId}&apiKey=${API_KEY}&pageSize=5`).pipe(
     //   map(({articles}) => this.articles = articles),
     //   )
-      // return of(mock.articles).toPromise();
+      return of(mock.articles).toPromise();
       console.log('////////////////////////////////')
 
       return this.http.get<{articles: []}>(`https://newsapi.org/v2/top-headlines?sources=${sourceId}&apiKey=${API_KEY}&pageSize=5&page=${page}`).toPromise()

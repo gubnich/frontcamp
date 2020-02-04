@@ -20,6 +20,7 @@ import { DetailViewComponent } from './routeComponents/detail-view/detail-view.c
 import { FormComponent } from './components/form/form.component';
 import { EditViewComponent } from './routeComponents/edit-view/edit-view.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { Guard } from './guards/app.guard';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     HttpClientModule,
   ],
   entryComponents: [CardComponent],
-  providers: [FilterPipe],
+  providers: [FilterPipe, Guard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,6 +5,7 @@ import { tap, map, toArray } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { CardComponent } from 'src/app/components/card/card.component';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-main-view',
@@ -30,6 +31,8 @@ export class MainViewComponent implements OnInit {
   }
   
   ngOnInit() {
+    
+
     this.newsService.getSelectedSource().subscribe(
       source => {
         this.page = 1;
@@ -46,7 +49,7 @@ export class MainViewComponent implements OnInit {
           this.createComponent('', element)
         })
       })
-      
+
     this.getSources();
     this.getArticles('abc-news-au');
     this.sources$.subscribe(item => this.selectedSource = item[0]);
@@ -98,18 +101,17 @@ export class MainViewComponent implements OnInit {
   // }
 
   getArticles(sourceId) {
-    // this.articles$ = this.newsService.getArticles(sourceId);
-    this.newsService.getArticles(sourceId, this.page).then(
-      ({articles}) => {
-        this.newsContainer.clear();
-        console.log('/////////', 'сюда', articles)
-        this.articles = articles;
-        articles.forEach(element => {
-          this.createComponent('', element)
-        });
-        this.page++;
-      }
-    );
+    // this.newsService.getArticles(sourceId, this.page).then(
+    //   ({articles}) => {
+    //     this.newsContainer.clear();
+    //     console.log('/////////', 'сюда', articles)
+    //     this.articles = articles;
+    //     articles.forEach(element => {
+    //       this.createComponent('', element)
+    //     });
+    //     this.page++;
+    //   }
+    // );
   }
 
   getLocalArticles() {
@@ -124,17 +126,17 @@ export class MainViewComponent implements OnInit {
 
   loadMore() {
     console.log('////////////////////////////////')
-    this.newsService.getArticles(this.selectedSource['id'], this.page).then(
-      ({articles}) => {
-        // this.articles = [...this.articles, ...articles];
-        // this.newsContainer.clear();
-        console.log('/////////', 'сюда', articles)
-        articles.forEach(element => {
-          this.createComponent('', element)
-        });
-        this.page++;
-      }
-    );
+    // this.newsService.getArticles(this.selectedSource['id'], this.page).then(
+    //   ({articles}) => {
+    //     // this.articles = [...this.articles, ...articles];
+    //     // this.newsContainer.clear();
+    //     console.log('/////////', 'сюда', articles)
+    //     articles.forEach(element => {
+    //       this.createComponent('', element)
+    //     });
+    //     this.page++;
+    //   }
+    // );
   }
 
   filterArticles(e) {
