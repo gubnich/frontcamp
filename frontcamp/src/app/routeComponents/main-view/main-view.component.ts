@@ -19,6 +19,7 @@ export class MainViewComponent implements OnInit {
   public selectedSource;
   public sources$: Observable<Array<{}>>;
   public showLocalOnly = false;
+  public page = 1;
 
   @ViewChild("localNewsContainer", { read: ViewContainerRef, static: false }) localNewsContainer;
   localNewsComponentRef: ComponentRef<any>;
@@ -26,13 +27,17 @@ export class MainViewComponent implements OnInit {
   newsComponentRef: ComponentRef<any>;
 
   constructor(private newsService: NewsService, private resolver: ComponentFactoryResolver, private cd: ChangeDetectorRef, private filterPipe: FilterPipe) {
+  }
+  
+  ngOnInit() {
     this.newsService.getSelectedSource().subscribe(
       source => {
+        this.page = 1;
         this.selectedSource = source;
-        this.getArticles(source['id'])
+        this.getArticles(source['id']);
       })
-
-
+  
+  
     this.newsService.getFilterValue().subscribe(
       value => {
         this.newsContainer.clear();
@@ -41,9 +46,7 @@ export class MainViewComponent implements OnInit {
           this.createComponent('', element)
         })
       })
-  }
-
-  ngOnInit() {
+      
     this.getSources();
     this.getArticles('abc-news-au');
     this.sources$.subscribe(item => this.selectedSource = item[0]);
@@ -72,8 +75,6 @@ export class MainViewComponent implements OnInit {
   }
 
   setShowLocalOnly($event) {
-    // console.log(this.showLocalOnly)
-    // this.showLocalOnly = !this.showLocalOnly;
     if ($event) {
       this.newsContainer.clear();
 
@@ -98,12 +99,15 @@ export class MainViewComponent implements OnInit {
 
   getArticles(sourceId) {
     // this.articles$ = this.newsService.getArticles(sourceId);
-    this.newsService.getArticles(sourceId).then(
-      (res: []) => {
-        this.articles = res;
-        res.forEach(element => {
+    this.newsService.getArticles(sourceId, this.page).then(
+      ({articles}) => {
+        this.newsContainer.clear();
+        console.log('/////////', 'сюда', articles)
+        this.articles = articles;
+        articles.forEach(element => {
           this.createComponent('', element)
-        })
+        });
+        this.page++;
       }
     );
   }
@@ -118,9 +122,18 @@ export class MainViewComponent implements OnInit {
     );
   }
 
-  loadMore(sourceId) {
-    this.newsService.getArticles(sourceId).then(
-      res => this.articles = [...this.articles, ...res]
+  loadMore() {
+    console.log('////////////////////////////////')
+    this.newsService.getArticles(this.selectedSource['id'], this.page).then(
+      ({articles}) => {
+        // this.articles = [...this.articles, ...articles];
+        // this.newsContainer.clear();
+        console.log('/////////', 'сюда', articles)
+        articles.forEach(element => {
+          this.createComponent('', element)
+        });
+        this.page++;
+      }
     );
   }
 

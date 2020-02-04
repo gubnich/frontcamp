@@ -33,6 +33,14 @@ app.get('/local/article/:id', function (req, res, next) {
   res.json(localNews[id]);
 });
 
+app.post('/local/article/:id', function (req, res, next) {
+  const { id } = req.params;
+  localNews[id] = {...localNews[id], ...req.body};
+  console.log('get', localNews)
+
+  res.json(localNews[id]);
+});
+
 app.put('/local/add', function (req, res, next) {
   localNews.push({...req.body, id: localNews.length});
   console.log('put', req.body)
@@ -47,10 +55,10 @@ app.put('/local/add', function (req, res, next) {
 //   res.json(localNews);
 // });
 
-app.delete('/:id', function (req, res) {
+app.delete('/local/article/:id', function (req, res) {
   const { id } = req.params;
   localNews.splice(id, 1);
-  res.json(localNews);
+  res.json(localNews.length);
 });
 
 app.use(function (error, req, res, next) {

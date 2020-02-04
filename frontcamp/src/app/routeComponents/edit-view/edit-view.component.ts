@@ -12,16 +12,16 @@ import { NewsService } from '../../services/news/news.service';
 export class EditViewComponent implements OnInit {
   public title;
   public article = {};
-  public saved = false;
+  public message = '';
 
   constructor(private route: ActivatedRoute, private newsService: NewsService) {
     this.title = this.route.snapshot.url[0].path;
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      if (params.get('id')) this.article = this.newsService.getArticle(params.get('id'))
-    });
+    // this.route.paramMap.subscribe(params => {
+      this.article = this.newsService.getArticle()
+    // });
   }
 
   submit(e) {
@@ -31,7 +31,14 @@ export class EditViewComponent implements OnInit {
   create(e) {
     console.log('submit', e)
     this.newsService.createArticle(e).then(
-      () => this.saved = true
+      () => this.message = 'Saved!'
+    )
+  }
+
+  edit(e) {
+    console.log('submit', e)
+    this.newsService.editArticle(e).then(
+      () => this.message = 'Changes saved!'
     )
   }
 }

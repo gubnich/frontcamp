@@ -1,13 +1,14 @@
 <figure class='card'>
   <img src="{{data.urlToImage || 'assets/placeholder-img.jpg'}}" alt={{data.title}} class='thumbnail' title={{data.title}} />
-  <figcaption class='caption'>
+  <figcaption *ngIf="!message" class='caption'>
     <span class="title">{{data.title}}</span>
     <p class="description">{{data.description}}</p>
     <p class="date">{{data.publishedAt | date: 'dd/MM/yyyy'}}</p>
-    <a [routerLink]="type === 'local' ? ['/detail/local', data.id] : ['/detail', data.title]">Read more...</a>
+    <a [routerLink]="type === 'local' ? ['/detail/local'] : ['/detail/world']" (click)="onClick()">Read more...</a>
   </figcaption>
+  <div *ngIf="message">{{message}}</div>
 </figure>
-<div class="controls">
-  <app-button *ngIf="type === 'local'" caption="Edit" class="button" [routerLink]="['/edit', data.title]"></app-button>
+<div *ngIf="!message" class="controls">
+  <app-button *ngIf="type === 'local'" caption="Edit" class="button" [routerLink]="['/edit', data.title]" (click)="onClick()"></app-button>
   <app-button *ngIf="type === 'local'" caption="Delete" class="button" (click)="delete()"></app-button>
 </div>

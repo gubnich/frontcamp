@@ -10,8 +10,8 @@ import { EditViewComponent } from './routeComponents/edit-view/edit-view.compone
 const routes: Routes = [
   { path: '', component: MainViewComponent },
   { path: 'main', component: MainViewComponent },
-  { path: 'detail/:id', component: DetailViewComponent },
-  { path: 'detail/local/:id', component: DetailViewComponent },
+  { path: 'detail/world', component: DetailViewComponent },
+  { path: 'detail/local', component: DetailViewComponent },
   { path: 'create', component: EditViewComponent },
   { path: 'edit/:id', component: EditViewComponent },
   { path: '404', component: NotFoundComponent },

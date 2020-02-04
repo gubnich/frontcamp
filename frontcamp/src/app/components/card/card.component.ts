@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NewsService } from 'src/app/services/news/news.service';
 
 @Component({
   selector: 'app-card',
@@ -10,12 +11,19 @@ export class CardComponent implements OnInit {
     urlToImage: 'https://via.placeholder.com/700x394.png?text=News+aggregator'
   };
   @Input() type;
-  constructor() { }
+  constructor(private newsService: NewsService) { }
+  public message = '';
 
   ngOnInit() { }
 
-  delete() {
-    console.log('delete', this.data)
+  delete( ){
+    this.newsService.deleteArticle(this.data['id']).then(
+      res => this.message = 'deleted'
+    )
+  }
+
+  onClick() {
+    this.newsService.setSelectedArticle(this.data);
   }
 
 }

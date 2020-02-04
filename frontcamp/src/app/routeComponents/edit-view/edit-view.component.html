@@ -1,8 +1,8 @@
 <main>
   <h2 class="heading">{{title}}</h2>
-  <app-form *ngIf="!saved" [data]="article" (submitEvent)="submit($event)"></app-form>
-  <div *ngIf="saved">
-    Saved!
+  <app-form *ngIf="!message" [data]="article" (submitEvent)="submit($event)"></app-form>
+  <div *ngIf="message">
+    {{message}}
     <app-button [routerLink]="['/']" caption="Home"></app-button>
   </div>
 </main>

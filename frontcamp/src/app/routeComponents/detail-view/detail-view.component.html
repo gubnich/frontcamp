@@ -1,5 +1,5 @@
 <main class="container">
-  <article class="article">
+  <article *ngIf="!message" class="article">
     <img src="{{article.urlToImage || 'assets/placeholder-img.jpg'}}" alt={{article.title}} class="thumbnail" title={{article.title}} />
     <content class="content">
       <h3 class="title">{{article.title}}</h3>
@@ -12,4 +12,8 @@
       <app-button class="button" caption="Delete" (click)="delete()"></app-button>
     </div>
   </article>
+  <div *ngIf="message">
+    {{message}}
+    <app-button [routerLink]="['/']" caption="Home"></app-button>
+  </div>
 </main>
