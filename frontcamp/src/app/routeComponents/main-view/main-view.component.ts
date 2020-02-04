@@ -25,9 +25,8 @@ export class MainViewComponent implements OnInit {
 
   constructor(private newsService: NewsService, private resolver: ComponentFactoryResolver, private cd: ChangeDetectorRef, private filterPipe: FilterPipe) {
   }
-  
+
   ngOnInit() {
-    
 
     this.newsService.getSelectedSource().subscribe(
       source => {
@@ -35,8 +34,7 @@ export class MainViewComponent implements OnInit {
         this.selectedSource = source;
         this.getArticles(source['id']);
       })
-  
-  
+
     this.newsService.getFilterValue().subscribe(
       value => {
         this.newsContainer.clear();
@@ -82,17 +80,16 @@ export class MainViewComponent implements OnInit {
   }
 
   getArticles(sourceId) {
-    // this.newsService.getArticles(sourceId, this.page).then(
-    //   ({articles}) => {
-    //     this.newsContainer.clear();
-    //     console.log('/////////', 'сюда', articles)
-    //     this.articles = articles;
-    //     articles.forEach(element => {
-    //       this.createComponent('', element)
-    //     });
-    //     this.page++;
-    //   }
-    // );
+    this.newsService.getArticles(sourceId, this.page).then(
+      ({ articles }) => {
+        this.newsContainer.clear();
+        this.articles = articles;
+        articles.forEach(element => {
+          this.createComponent('', element)
+        });
+        this.page++;
+      }
+    );
   }
 
   getLocalArticles() {
@@ -104,16 +101,13 @@ export class MainViewComponent implements OnInit {
   }
 
   loadMore() {
-    // this.newsService.getArticles(this.selectedSource['id'], this.page).then(
-    //   ({articles}) => {
-    //     // this.articles = [...this.articles, ...articles];
-    //     // this.newsContainer.clear();
-    //     console.log('/////////', 'сюда', articles)
-    //     articles.forEach(element => {
-    //       this.createComponent('', element)
-    //     });
-    //     this.page++;
-    //   }
-    // );
+    this.newsService.getArticles(this.selectedSource['id'], this.page).then(
+      ({ articles }) => {
+        articles.forEach(element => {
+          this.createComponent('', element)
+        });
+        this.page++;
+      }
+    );
   }
 }
