@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'detail/world', component: DetailViewComponent },
   { path: 'detail/local', component: DetailViewComponent },
   { path: 'create', component: EditViewComponent, canActivate: [Guard] },
-  { path: 'edit/:id', component: EditViewComponent },
+  { path: 'edit', component: EditViewComponent, canActivate: [Guard] },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '/404' }
 ];

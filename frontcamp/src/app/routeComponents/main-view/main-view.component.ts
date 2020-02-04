@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, ComponentFactory, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, ComponentFactory, ChangeDetectorRef, OnDestroy } from '@angular/core';
 
 import { NewsService } from '../../services/news/news.service';
 import { tap, map, toArray } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.css']
 })
-export class MainViewComponent implements OnInit {
+export class MainViewComponent implements OnInit, OnDestroy {
   public sources;
   // public articles$: Observable<any>;
   public articles;
@@ -56,7 +56,9 @@ export class MainViewComponent implements OnInit {
     this.getLocalArticles();
   }
 
-
+  ngOnDestroy() {
+    console.log('destroyed')
+  }
   createComponent(type, data) {
     const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(CardComponent);
 

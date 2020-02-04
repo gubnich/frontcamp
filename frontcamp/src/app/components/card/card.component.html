@@ -9,6 +9,6 @@
   <div *ngIf="message">{{message}}</div>
 </figure>
 <div *ngIf="!message" class="controls">
-  <app-button *ngIf="type === 'local'" caption="Edit" class="button" [routerLink]="['/edit', data.title]" (click)="onClick()"></app-button>
+  <app-button *ngIf="type === 'local'" caption="Edit" class="button" [routerLink]="['/edit']" (click)="onClick()"></app-button>
   <app-button *ngIf="type === 'local'" caption="Delete" class="button" (click)="delete()"></app-button>
 </div>

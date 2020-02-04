@@ -7,16 +7,15 @@ import { NewsService } from 'src/app/services/news/news.service';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
-  @Input() data = {
-    urlToImage: 'https://via.placeholder.com/700x394.png?text=News+aggregator'
-  };
+  @Input() data;
   @Input() type;
-  constructor(private newsService: NewsService) { }
   public message = '';
+
+  constructor(private newsService: NewsService) { }
 
   ngOnInit() { }
 
-  delete( ){
+  delete() {
     this.newsService.deleteArticle(this.data['id']).then(
       res => this.message = 'deleted'
     )
