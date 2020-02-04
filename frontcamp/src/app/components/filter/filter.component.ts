@@ -7,12 +7,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class FilterComponent implements OnInit {
   @Output() filter = new EventEmitter;
+
   constructor() { }
 
   ngOnInit() { }
 
   onChange(data) {
-    console.log(data)
     this.filter.emit(data);
   }
 }
