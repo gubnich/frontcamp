@@ -9,6 +9,7 @@ export class SelectComponent implements OnInit {
   @Input() data;
   @Output() select = new EventEmitter();
   public selectedValue;
+  
   constructor() {
   }
 
