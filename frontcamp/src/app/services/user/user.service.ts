@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class UserService {
   }
 
   login() {
-    this.user$.next({ name: 'User Login'});
+    this.user$.next({ name: 'User Login' });
   }
 
   logout() {
