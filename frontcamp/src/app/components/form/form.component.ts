@@ -28,14 +28,15 @@ export class FormComponent implements OnInit {
       description: [this.data.description],
       content: [this.data.content, [Validators.required]],
       imageUrl: [this.data.urlToImage],
-      publishedAt: [this.data.publishedAt ? new Date(this.data.publishedAt).toISOString().substr(0, 10): new Date().toISOString().substr(0, 10)],
+      publishedAt: [this.data.publishedAt ?
+        new Date(this.data.publishedAt).toISOString().substr(0, 10) :
+        new Date().toISOString().substr(0, 10)],
       author: [this.data.author],
       sourceUrl: [this.data.sourceUrl],
     });
   }
 
   onSubmit() {
-    // console.log('submit', this.form.value)
     this.submitEvent.emit(this.form.value);
   }
 
