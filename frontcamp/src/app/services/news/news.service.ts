@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Subject, of } from 'rxjs';
+import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { HttpClient } from "@angular/common/http";
-import { mock } from './mock';
 
 const  API_KEY = 'ba5992c165544bceb02618e82aa9d2ff';
 
@@ -20,14 +19,12 @@ export class NewsService {
   }
 
   getSources() {
-    // return of(mock.sources);
     return this.http.get<{sources: []}>(`https://newsapi.org/v1/sources?apiKey=${API_KEY}`).pipe(
       map(({sources}) => sources),
     )
   }
 
   getArticles(sourceId, page) {
-    // return of(mock.articles).toPromise();
     return this.http.get<{articles: []}>(`https://newsapi.org/v2/top-headlines?sources=${sourceId}&apiKey=${API_KEY}&pageSize=5&page=${page}`).toPromise()
   }
 
