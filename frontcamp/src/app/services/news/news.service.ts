@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, of } from 'rxjs';
-import { tap, map, mergeMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { HttpClient } from "@angular/common/http";
 import { mock } from './mock';
@@ -20,31 +20,22 @@ export class NewsService {
   }
 
   getSources() {
-    return of(mock.sources);
+    // return of(mock.sources);
     return this.http.get<{sources: []}>(`https://newsapi.org/v1/sources?apiKey=${API_KEY}`).pipe(
       map(({sources}) => sources),
     )
-   
   }
 
   getArticles(sourceId, page) {
-    
-    // this.http.get<{articles: []}>(`https://newsapi.org/v2/top-headlines?sources=${sourceId}&apiKey=${API_KEY}&pageSize=5`).pipe(
-    //   map(({articles}) => this.articles = articles),
-    //   )
-      return of(mock.articles).toPromise();
-      console.log('////////////////////////////////')
-
-      return this.http.get<{articles: []}>(`https://newsapi.org/v2/top-headlines?sources=${sourceId}&apiKey=${API_KEY}&pageSize=5&page=${page}`).toPromise()
+    // return of(mock.articles).toPromise();
+    return this.http.get<{articles: []}>(`https://newsapi.org/v2/top-headlines?sources=${sourceId}&apiKey=${API_KEY}&pageSize=5&page=${page}`).toPromise()
   }
 
-  getLocalArticles() {
-    
+  getLocalArticles() {    
     return this.http.get(`/local/all`).toPromise();
   }
 
   getArticle() {
-    // return mock.articles.find(item => item.title == param);
     return this.selectedArticle;
   }
 
@@ -53,9 +44,7 @@ export class NewsService {
   }
 
   createArticle(article) {
-    console.log('service create')
     return this.http.put(`/local/add`, article).toPromise()
-    // fetch(`/local/`, article)
   }
 
   getSelectedSource() {
@@ -63,12 +52,10 @@ export class NewsService {
   }
 
   setSelectedSource(id) {
-    console.log('id',id)
     this.selectedSource$.next(id);
   }
 
   setFilterValue(value) {
-    console.log('filter',value)
     this.filterValue$.next(value);
   }
 
