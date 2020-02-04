@@ -1,20 +1,16 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, ComponentFactory, ChangeDetectorRef, OnDestroy } from '@angular/core';
 
 import { NewsService } from '../../services/news/news.service';
-import { tap, map, toArray } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CardComponent } from 'src/app/components/card/card.component';
 import { FilterPipe } from 'src/app/pipes/filter.pipe';
-import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-main-view',
   templateUrl: './main-view.component.html',
   styleUrls: ['./main-view.component.css']
 })
-export class MainViewComponent implements OnInit, OnDestroy {
-  public sources;
-  // public articles$: Observable<any>;
+export class MainViewComponent implements OnInit {
   public articles;
   public localArticles;
   public selectedSource;
@@ -45,7 +41,6 @@ export class MainViewComponent implements OnInit, OnDestroy {
       value => {
         this.newsContainer.clear();
         this.filterPipe.transform(this.articles, value).forEach(element => {
-          console.log(element)
           this.createComponent('', element)
         })
       })
@@ -56,9 +51,6 @@ export class MainViewComponent implements OnInit, OnDestroy {
     this.getLocalArticles();
   }
 
-  ngOnDestroy() {
-    console.log('destroyed')
-  }
   createComponent(type, data) {
     const factory: ComponentFactory<any> = this.resolver.resolveComponentFactory(CardComponent);
 
@@ -70,13 +62,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
       this.newsComponentRef = this.newsContainer.createComponent(factory);
       this.newsComponentRef.instance.type = type;
       this.newsComponentRef.instance.data = data;
-
     }
-
-  }
-
-  setSelectedSource(val) {
-
   }
 
   setShowLocalOnly($event) {
@@ -95,13 +81,6 @@ export class MainViewComponent implements OnInit, OnDestroy {
     this.sources$ = this.newsService.getSources();
   }
 
-  // getArticles(sourceId) {
-  //   // this.articles$ = this.newsService.getArticles(sourceId);
-  //   this.newsService.getArticles(sourceId).then(
-  //     res => this.articles$ = res
-  //   );
-  // }
-
   getArticles(sourceId) {
     // this.newsService.getArticles(sourceId, this.page).then(
     //   ({articles}) => {
@@ -117,9 +96,7 @@ export class MainViewComponent implements OnInit, OnDestroy {
   }
 
   getLocalArticles() {
-    // this.articles$ = this.newsService.getArticles(sourceId);
     this.newsService.getLocalArticles().then(
-      // res => this.localArticles = res
       (res: []) => res.forEach(element => {
         this.createComponent('local', element)
       })
@@ -127,7 +104,6 @@ export class MainViewComponent implements OnInit, OnDestroy {
   }
 
   loadMore() {
-    console.log('////////////////////////////////')
     // this.newsService.getArticles(this.selectedSource['id'], this.page).then(
     //   ({articles}) => {
     //     // this.articles = [...this.articles, ...articles];
@@ -139,9 +115,5 @@ export class MainViewComponent implements OnInit, OnDestroy {
     //     this.page++;
     //   }
     // );
-  }
-
-  filterArticles(e) {
-    console.log('///////////////////', e)
   }
 }
