@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
+    "server": "node server.js",
     "serveAot": "ng serve --configuration=aot",
     "build": "ng build",
     "buildProdWithoutAot": "ng build --configuration=prodWithoutAot",
