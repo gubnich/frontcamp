@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SelectComponent } from './select.component';
+import { FormsModule } from '@angular/forms';
 
 describe('SelectComponent', () => {
   let component: SelectComponent;
@@ -8,7 +9,10 @@ describe('SelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SelectComponent ]
+      declarations: [ SelectComponent ],
+      imports: [
+        FormsModule
+      ]
     })
     .compileComponents();
   }));
@@ -16,6 +20,7 @@ describe('SelectComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SelectComponent);
     component = fixture.componentInstance;
+    component.data = [];
     fixture.detectChanges();
   });
 
