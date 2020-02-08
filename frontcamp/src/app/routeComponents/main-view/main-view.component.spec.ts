@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { MainViewComponent } from './main-view.component';
+import { ControlsBarComponent } from 'src/app/components/controls-bar/controls-bar.component';
+import { ButtonComponent } from 'src/app/components/button/button.component';
+import { SelectComponent } from 'src/app/components/select/select.component';
+import { FilterComponent } from 'src/app/components/filter/filter.component';
+import { FilterPipe } from 'src/app/pipes/filter.pipe';
 
 describe('MainViewComponent', () => {
   let component: MainViewComponent;
@@ -8,7 +16,21 @@ describe('MainViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainViewComponent ]
+      declarations: [
+        MainViewComponent,
+        ControlsBarComponent,
+        ButtonComponent,
+        SelectComponent,
+        FilterComponent
+      ],
+      imports: [
+        FormsModule,
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
+      providers: [
+        FilterPipe
+      ]
     })
     .compileComponents();
   }));
