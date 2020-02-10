@@ -26,4 +26,10 @@ describe('FilterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit event', () => {
+    spyOn(component.filter, 'emit');
+    component.onChange({ })
+    expect(component.filter.emit).toHaveBeenCalled();
+  });
 });

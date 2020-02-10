@@ -24,5 +24,4 @@ export class CardComponent implements OnInit {
   onClick() {
     this.newsService.setSelectedArticle(this.data);
   }
-
 }

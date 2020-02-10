@@ -33,4 +33,10 @@ describe('FormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit event', () => {
+    spyOn(component.submitEvent, 'emit');
+    component.onSubmit()
+    expect(component.submitEvent.emit).toHaveBeenCalled();
+  });
 });

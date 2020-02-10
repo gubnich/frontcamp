@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -37,5 +37,11 @@ describe('ControlsBarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit event', () => {
+    spyOn(component.showLocal, 'emit');
+    component.onCheckboxChange({ target: { checked: true } })
+    expect(component.showLocal.emit).toHaveBeenCalled();
   });
 });
