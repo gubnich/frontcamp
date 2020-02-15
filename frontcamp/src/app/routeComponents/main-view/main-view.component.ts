@@ -76,6 +76,7 @@ export class MainViewComponent implements OnInit {
   }
 
   getSources() {
+    console.log('call')
     this.sources$ = this.newsService.getSources();
   }
 
