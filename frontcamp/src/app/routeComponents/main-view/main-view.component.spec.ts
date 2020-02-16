@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { NewsService } from 'src/app/services/news/news.service';
 import { NewsServiceMock } from 'src/app/services/news/news.service.mock'
@@ -38,9 +37,6 @@ describe('MainViewComponent', () => {
         FilterPipe,
         { provide: NewsService, useClass: NewsServiceMock },
       ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
     })
       .compileComponents();
   }));
