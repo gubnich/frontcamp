@@ -11,7 +11,7 @@ import { FilterPipe } from 'src/app/pipes/filter.pipe';
   styleUrls: ['./main-view.component.css']
 })
 export class MainViewComponent implements OnInit {
-  public articles;
+  public articles = [];
   public localArticles;
   public selectedSource;
   public sources$: Observable<Array<{}>>;
@@ -66,17 +66,14 @@ export class MainViewComponent implements OnInit {
   setShowLocalOnly($event) {
     if ($event) {
       this.newsContainer.clear();
-
     } else {
       this.articles.forEach(element => {
         this.createComponent('', element)
       })
-
     }
   }
 
   getSources() {
-    console.log('call')
     this.sources$ = this.newsService.getSources();
   }
 
